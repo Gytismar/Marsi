@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: laravel-app
+        working_dir: /var/www
+        volumes:
+            - .:/var/www
+        expose:
+            - "9000"  # Only exposed internally, not bound to host port
+        depends_on:
+            - db
+
+    db:
+        image: postgres:15
+        container_name: postgres-db
+        restart: always
+        ports:
+            - "5432:5432"
+        environment:
+            POSTGRES_DB: laravel
+            POSTGRES_USER: laravel
+            POSTGRES_PASSWORD: secret
+        volumes:
+            - pgdata:/var/lib/postgresql/data
+
+    nginx:
+        image: nginx:alpine
+        container_name: nginx-laravel
+        ports:
+            - "8080:80"
+        volumes:
+            - .:/var/www
+            - ./docker/nginx/conf.d:/etc/nginx/conf.d
+        depends_on:
+            - app
+
+volumes:
+    pgdata:
