@@ -11,8 +11,15 @@ class CompanyFactory extends Factory
 
     public function definition(): array
     {
-        return [
+        $industries = ['Informacinės technologijos', 'Gamyba', 'Finansai', 'Sveikatos priežiūra', 'Transportas'];
+        $countries = ['Lietuva', 'Latvija', 'Estija'];
+        $sizes = ['Maža', 'Vidutinė', 'Didelė'];
 
+        return [
+            'company_name' => $this->faker->company(),
+            'industry' => $this->faker->randomElement($industries),
+            'country' => $this->faker->randomElement($countries),
+            'size' => $this->faker->randomElement($sizes),
         ];
     }
 }

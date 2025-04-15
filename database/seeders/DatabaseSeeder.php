@@ -2,22 +2,29 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Company;
+use App\Models\Gri302Energy;
+use App\Models\Gri303Water;
+use App\Models\Gri305Emission;
+use App\Models\Gri306Waste;
+use App\Models\Gri403HealthSafety;
+use App\Models\Gri2Governance;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        Company::factory()
+            ->count(10)
+            ->create()
+            ->each(function ($company) {
+                Gri302Energy::factory()->count(2)->create(['company_id' => $company->id]);
+                Gri303Water::factory()->count(2)->create(['company_id' => $company->id]);
+                Gri305Emission::factory()->count(1)->create(['company_id' => $company->id]);
+                Gri306Waste::factory()->count(1)->create(['company_id' => $company->id]);
+                Gri403HealthSafety::factory()->count(1)->create(['company_id' => $company->id]);
+                Gri2Governance::factory()->count(1)->create(['company_id' => $company->id]);
+            });
     }
 }
