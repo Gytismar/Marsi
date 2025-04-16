@@ -1,0 +1,29 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\{
+    CompanyController,
+    Gri2GovernanceController,
+    Gri302EnergyController,
+    Gri303WaterController,
+    Gri305EmissionController,
+    Gri306WasteController,
+    Gri403HealthSafetyController
+};
+
+Route::get('/debug-test', function () {
+    return response()->json(['status' => 'ok']);
+});
+
+Route::prefix('v1')->group(function () {
+    Route::apiResource('companies', CompanyController::class);
+
+    Route::prefix('gri')->group(function () {
+        Route::apiResource('g2-governance', Gri2GovernanceController::class);
+        Route::apiResource('g302-energy', Gri302EnergyController::class);
+        Route::apiResource('g303-water', Gri303WaterController::class);
+        Route::apiResource('g305-emissions', Gri305EmissionController::class);
+        Route::apiResource('g306-waste', Gri306WasteController::class);
+        Route::apiResource('g403-health-safety', Gri403HealthSafetyController::class);
+    });
+});
