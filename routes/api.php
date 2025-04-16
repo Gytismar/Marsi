@@ -11,10 +11,6 @@ use App\Http\Controllers\{
     Gri403HealthSafetyController
 };
 
-Route::get('/debug-test', function () {
-    return response()->json(['status' => 'ok']);
-});
-
 Route::prefix('v1')->group(function () {
     Route::apiResource('companies', CompanyController::class);
 
