@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\Gri303WaterService;
 
-class Gri303WaterController extends Controller
+class Gri303WaterController extends AbstractGriController
 {
     protected Gri303WaterService $service;
 

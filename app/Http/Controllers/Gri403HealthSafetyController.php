@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\Gri403HealthSafetyService;
 
-class Gri403HealthSafetyController extends Controller
+class Gri403HealthSafetyController extends AbstractGriController
 {
     protected Gri403HealthSafetyService $service;
 

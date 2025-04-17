@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\Gri302EnergyService;
 
-class Gri302EnergyController extends Controller
+class Gri302EnergyController extends AbstractGriController
 {
     protected Gri302EnergyService $service;
 

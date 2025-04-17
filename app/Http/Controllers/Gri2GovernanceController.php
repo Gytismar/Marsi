@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\Gri2GovernanceService;
 
-class Gri2GovernanceController extends Controller
+class Gri2GovernanceController extends AbstractGriController
 {
     protected Gri2GovernanceService $service;
 

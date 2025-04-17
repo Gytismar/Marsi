@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\CompanyService;
 
-class CompanyController extends Controller
+class CompanyController extends AbstractGriController
 {
     protected CompanyService $service;
 

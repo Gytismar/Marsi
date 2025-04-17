@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\Gri305EmissionService;
 
-class Gri305EmissionController extends Controller
+class Gri305EmissionController extends AbstractGriController
 {
     protected Gri305EmissionService $service;
 

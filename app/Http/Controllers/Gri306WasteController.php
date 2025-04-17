@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\Gri306WasteService;
 
-class Gri306WasteController extends Controller
+class Gri306WasteController extends AbstractGriController
 {
     protected Gri306WasteService $service;
 
