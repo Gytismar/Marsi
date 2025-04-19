@@ -4,8 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthGRIController;
 
 Route::get('/', function () {
-    return view ('welcome2' );
+    return view('app');
 });
+
 
 
 
