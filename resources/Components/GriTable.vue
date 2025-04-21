@@ -110,15 +110,23 @@
                             <td class="px-8 py-4 text-right whitespace-nowrap">
                                 <button
                                     @click="editRow(row)"
-                                    class="inline-flex items-center px-4 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition-colors font-medium text-sm mr-2"
+                                    class="p-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition-colors mr-2"
+                                    title="Edit"
                                 >
-                                    Update
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M15.232 5.232l3.536 3.536M9 11l6-6 3 3-6 6H9v-3zM5 21h14" />
+                                    </svg>
                                 </button>
                                 <button
                                     @click="confirmDelete(row.energy_id)"
-                                    class="inline-flex items-center px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors font-medium text-sm"
+                                    class="p-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
+                                    title="Delete"
                                 >
-                                    Delete
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M6 18L18 6M6 6l12 12"/>
+                                    </svg>
                                 </button>
                             </td>
                         </tr>
@@ -239,7 +247,7 @@ const deleteRow = async (id) => {
     try {
         await axios.delete(`${props.apiEndpoint}/${id}`)
         showDeleteModal.value = false
-        window.location.reload() // 👈 refresh the entire page
+        window.location.reload()
     } catch (error) {
         console.error('Error deleting row:', error)
     }
