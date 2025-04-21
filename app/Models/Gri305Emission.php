@@ -11,7 +11,6 @@ class Gri305Emission extends Model
     use HasFactory;
 
     protected $table = 'gri_305_emissions';
-    protected $primaryKey = 'emission_id';
 
     protected $fillable = [
         'company_id',

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('gri_302_energy', function (Blueprint $table) {
-            $table->id('energy_id');
+            $table->id();
             $table->foreignId('company_id')->constrained('companies')->onDelete('cascade');
             $table->smallInteger('reporting_year');
             $table->decimal('total_energy_consumed', 10, 2)->nullable();

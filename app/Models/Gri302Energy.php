@@ -11,7 +11,6 @@ class Gri302Energy extends Model
     use HasFactory;
 
     protected $table = 'gri_302_energy';
-    protected $primaryKey = 'energy_id';
 
     protected $fillable = [
         'company_id',

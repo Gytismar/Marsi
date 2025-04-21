@@ -11,7 +11,6 @@ class Gri303Water extends Model
     use HasFactory;
 
     protected $table = 'gri_303_water';
-    protected $primaryKey = 'water_id';
 
     protected $fillable = [
         'company_id',

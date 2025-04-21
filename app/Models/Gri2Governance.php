@@ -11,7 +11,6 @@ class Gri2Governance extends Model
     use HasFactory;
 
     protected $table = 'gri_2_governance';
-    protected $primaryKey = 'governance_id';
 
     protected $fillable = [
         'company_id',

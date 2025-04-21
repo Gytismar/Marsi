@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('gri_303_water', function (Blueprint $table) {
-            $table->id('water_id');
+            $table->id();
             $table->foreignId('company_id')->constrained('companies')->onDelete('cascade');
             $table->smallInteger('reporting_year');
             $table->decimal('water_withdrawn', 10, 2);

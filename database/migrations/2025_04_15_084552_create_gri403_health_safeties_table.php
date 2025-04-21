@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('gri_403_health_safety', function (Blueprint $table) {
-            $table->id('health_safety_id');
+            $table->id();
             $table->foreignId('company_id')->constrained('companies')->onDelete('cascade');
             $table->smallInteger('reporting_year');
             $table->integer('total_workforce');

@@ -11,7 +11,6 @@ class Gri403HealthSafety extends Model
     use HasFactory;
 
     protected $table = 'gri_403_health_safety';
-    protected $primaryKey = 'health_safety_id';
 
     protected $fillable = [
         'company_id',

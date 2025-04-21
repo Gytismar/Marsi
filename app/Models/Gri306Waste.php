@@ -11,7 +11,6 @@ class Gri306Waste extends Model
     use HasFactory;
 
     protected $table = 'gri_306_waste';
-    protected $primaryKey = 'waste_id';
 
     protected $fillable = [
         'company_id',
