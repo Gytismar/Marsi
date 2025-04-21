@@ -5,10 +5,11 @@ import path from 'path';
 import dotenv from 'dotenv';
 dotenv.config();
 
-const isProduction = process.env.APP_ENV === 'production';
+//const isProduction = process.env.APP_ENV === 'production';
 
 export default defineConfig({
-    base: isProduction ? '/build/' : '/',
+    //base: isProduction ? '/build/' : '/build/',
+    base: '/build/',
     plugins: [
         vue(),
         laravel({
