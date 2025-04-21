@@ -36,4 +36,9 @@ abstract class Service
         $record = $this->getById($id);
         $record->delete();
     }
+
+    public function getSchema(): array
+    {
+        return $this->model()->getFillable();
+    }
 }

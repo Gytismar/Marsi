@@ -6,6 +6,6 @@
     @vite(['resources/js/app.js'])
 </head>
 <body class="m-0 p-0 h-screen">
-<div id="app" class="h-full"></div>
+<div id="app" data-page="{{ $page ?? 'home' }}" class="h-full"></div>
 </body>
 </html>

@@ -15,6 +15,9 @@ Route::prefix('v1')->group(function () {
     Route::apiResource('companies', CompanyController::class);
 
     Route::prefix('gri')->group(function () {
+
+        Route::get('g302-energy/schema', [Gri302EnergyController::class, 'schema']);
+
         Route::apiResource('g2-governance', Gri2GovernanceController::class);
         Route::apiResource('g302-energy', Gri302EnergyController::class);
         Route::apiResource('g303-water', Gri303WaterController::class);

@@ -39,5 +39,11 @@ abstract class AbstractGriController extends LaravelController
         $this->service()->delete($id);
         return response()->json(['message' => 'Deleted successfully']);
     }
+
+    public function schema(): JsonResponse
+    {
+        return response()->json($this->service()->getSchema());
+    }
+
 }
 

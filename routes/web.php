@@ -4,7 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthGRIController;
 
 Route::get('/', function () {
-    return view('app');
+    return view('app', ['page' => 'home']);
+});
+
+Route::get('/gri/g302-energy', function () {
+    return view('app', ['page' => 'gri302']);
 });
 
 
