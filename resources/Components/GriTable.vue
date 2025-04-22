@@ -46,8 +46,8 @@
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path
                                                 :d="sortColumn === col && sortDirection === 'asc'
-                                                        ? 'M5 15l7-7 7 7'
-                                                        : 'M19 9l-7 7-7-7'"
+                                ? 'M5 15l7-7 7 7'
+                                : 'M19 9l-7 7-7-7'"
                                                 stroke-linecap="round"
                                                 stroke-linejoin="round"
                                                 stroke-width="2"
@@ -144,11 +144,12 @@
                             <input
                                 v-model="form[column]"
                                 :type="getInputType(column)"
-                                :placeholder="`Enter ${props.columnLabels[column] ?? column.replace(/_/g, ' ')}`"
+                                :placeholder="`Enter ${columnLabels[column] ?? column.replace(/_/g, ' ')}`"
                                 :class="[
-                                'w-full border rounded-lg px-4 py-2.5 shadow-sm transition-colors focus:ring-2 focus:ring-blue-500 focus:border-blue-500',
-                                form[column] ? 'bg-blue-50' : '',
-                                validationErrors[column] ? 'border-red-500' : 'border-gray-300']"
+                  'w-full border rounded-lg px-4 py-2.5 shadow-sm transition-colors focus:ring-2 focus:ring-blue-500 focus:border-blue-500',
+                  form[column] ? 'bg-blue-50' : '',
+                  validationErrors[column] ? 'border-red-500' : 'border-gray-300'
+                ]"
                             />
                             <p v-if="validationErrors[column]" class="text-sm text-red-600">
                                 {{ validationErrors[column] }}
@@ -180,155 +181,23 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import axios from 'axios'
 import AppLayout from '../Layouts/AppLayout.vue'
+import useGriTableLogic from './useGriTableLogic.js'
 
 const props = defineProps({
     apiEndpoint: String,
     title: String,
     infoUrl: String,
-    infoTooltip: {
-        type: String,
-        default: 'Click to learn more',
-    },
-    columnLabels: {
-        type: Object,
-        default: () => ({}),
-    },
-    columnTooltips: {
-        type: Object,
-        default: () => ({}),
-    },
+    infoTooltip: { type: String, default: 'Click to learn more' },
+    columnLabels: { type: Object, default: () => ({}) },
+    columnTooltips: { type: Object, default: () => ({}) },
 })
 
-const columns = ref([])
-const rows = ref([])
-const form = ref({})
-const showFormModal = ref(false)
-const showDeleteModal = ref(false)
-const deleteId = ref(null)
-const sortColumn = ref(null)
-const sortDirection = ref('asc')
-const requiredFields = ref([])
-const errors = ref({})
-const validationErrors = ref({})
-
-const fetchSchema = async () => {
-    try {
-        const { data } = await axios.get(`${props.apiEndpoint}/schema`)
-        columns.value = Array.from(new Set(['id', ...data.fields]))
-        requiredFields.value = data.required || []
-        form.value = {}
-    } catch (error) {
-        console.error('Error fetching schema:', error)
-    }
-}
-
-const fetchData = async () => {
-    try {
-        const { data } = await axios.get(props.apiEndpoint)
-        rows.value = data.sort((a, b) => a.id - b.id)
-        sortColumn.value = 'id'
-        sortDirection.value = 'asc'
-    } catch (error) {
-        console.error('Error fetching data:', error)
-    }
-}
-
-const handleSubmit = async () => {
-    validationErrors.value = {} // reset errors
-
-    let hasError = false
-    for (const field of requiredFields.value) {
-        if (!form.value[field]) {
-            validationErrors.value[field] = `${props.columnLabels[field] ?? field} is required`
-            hasError = true
-        }
-    }
-
-    if (hasError) return
-
-    try {
-        const url = form.value.id ? `${props.apiEndpoint}/${form.value.id}` : props.apiEndpoint
-        const method = form.value.id ? 'put' : 'post'
-        await axios[method](url, form.value)
-        await fetchData()
-        resetForm()
-    } catch (error) {
-        console.error('Error submitting form:', error)
-    }
-}
-
-const editRow = (row) => {
-    form.value = { ...row }
-    showFormModal.value = true
-}
-
-const showAddForm = () => {
-    form.value = {}
-    showFormModal.value = true
-}
-
-const confirmDelete = (id) => {
-    deleteId.value = id
-    showDeleteModal.value = true
-}
-
-const deleteRow = async (id) => {
-    if (!id || isNaN(id)) return
-    try {
-        await axios.delete(`${props.apiEndpoint}/${id}`)
-        showDeleteModal.value = false
-        await fetchData()
-    } catch (error) {
-        console.error('Error deleting row:', error)
-    }
-}
-
-const cancelForm = () => {
-    form.value = {}
-    showFormModal.value = false
-}
-
-const resetForm = () => {
-    form.value = {}
-    showFormModal.value = false
-}
-
-const getInputType = (column) => {
-    if (column.includes('id') || column.includes('year')) return 'number'
-    if (column.includes('email')) return 'email'
-    if (column.includes('password')) return 'password'
-    if (column.includes('date')) return 'date'
-    if (column.includes('url') || column.includes('website')) return 'url'
-    return 'text'
-}
-
-const sortBy = (column) => {
-    if (sortColumn.value === column) {
-        sortDirection.value = sortDirection.value === 'asc' ? 'desc' : 'asc'
-    } else {
-        sortColumn.value = column
-        sortDirection.value = 'asc'
-    }
-
-    rows.value.sort((a, b) => {
-        const valA = a[column]
-        const valB = b[column]
-        if (valA === null || valA === undefined) return 1
-        if (valB === null || valB === undefined) return -1
-        if (typeof valA === 'number' && typeof valB === 'number') {
-            return sortDirection.value === 'asc' ? valA - valB : valB - valA
-        }
-        return sortDirection.value === 'asc'
-            ? String(valA).localeCompare(String(valB))
-            : String(valB).localeCompare(String(valA))
-    })
-}
-
-onMounted(async () => {
-    await fetchSchema()
-    await fetchData()
-})
+const {
+    columns, rows, form, showFormModal, showDeleteModal, deleteId,
+    sortColumn, sortDirection, requiredFields, errors, validationErrors,
+    handleSubmit, editRow, showAddForm, confirmDelete, deleteRow,
+    cancelForm, resetForm, getInputType, sortBy,
+} = useGriTableLogic(props)
 </script>
+
