@@ -26,10 +26,20 @@ class Gri305EmissionController extends AbstractGriController
         return [
             'company_id' => $required . 'integer',
             'reporting_year' => $required . 'integer',
-            'scope_1' => 'nullable|numeric',
-            'scope_2' => 'nullable|numeric',
+            'scope_1' => $required . 'numeric',
+            'scope_2' => $required . 'numeric',
             'scope_3' => 'nullable|numeric',
             'ghg_intensity' => 'nullable|numeric',
+        ];
+    }
+
+    protected function getRequiredFields(): array
+    {
+        return [
+            'company_id',
+            'reporting_year',
+            'scope_1',
+            'scope_2',
         ];
     }
 }

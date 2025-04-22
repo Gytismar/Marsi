@@ -41,4 +41,11 @@ class Gri2GovernanceController extends AbstractGriController
             'compliance_fines_value' => 'nullable|numeric',
         ];
     }
+    protected function getRequiredFields(): array
+    {
+        return [
+            'company_id',
+            'reporting_year',
+        ];
+    }
 }

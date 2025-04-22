@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Services\Gri303WaterService;
 
@@ -27,10 +28,21 @@ class Gri303WaterController extends AbstractGriController
             'company_id' => $required . 'integer',
             'reporting_year' => $required . 'integer',
             'water_withdrawn' => $required . 'numeric',
-            'water_source_type' => 'nullable|string',
+            'water_recycled' => 'nullable|numeric',
             'water_discharge' => 'nullable|numeric',
-            'discharge_destination' => 'nullable|string',
-            'water_consumption' => 'nullable|numeric',
+            'unit' => $required . 'string',
+            'source' => $required . 'string',
+        ];
+    }
+
+    protected function getRequiredFields(): array
+    {
+        return [
+            'company_id',
+            'reporting_year',
+            'water_withdrawn',
+            'unit',
+            'source',
         ];
     }
 }

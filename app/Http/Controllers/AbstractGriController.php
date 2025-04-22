@@ -11,6 +11,7 @@ abstract class AbstractGriController extends LaravelController
 {
     abstract protected function service(): Service;
     abstract protected function validationRules(Request $request): array;
+    abstract protected function getRequiredFields(): array;
 
     public function index(): JsonResponse
     {
@@ -42,8 +43,10 @@ abstract class AbstractGriController extends LaravelController
 
     public function schema(): JsonResponse
     {
-        return response()->json($this->service()->getSchema());
+        return response()->json([
+            'fields' => $this->service()->getSchema(),
+            'required' => $this->getRequiredFields(),
+        ]);
     }
-
 }
 

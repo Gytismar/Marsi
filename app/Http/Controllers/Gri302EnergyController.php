@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Services\Gri302EnergyService;
 
@@ -26,13 +27,25 @@ class Gri302EnergyController extends AbstractGriController
         return [
             'company_id' => $required . 'integer',
             'reporting_year' => $required . 'integer',
-            'total_energy_consumed' => $required . 'numeric',
-            'renewable_energy_consumed' => 'nullable|numeric',
-            'nonrenewable_energy_consumed' => 'nullable|numeric',
+            'total_energy_consumed' => 'nullable|numeric',
+            'renewable_energy_consumed' => $required . 'numeric',
+            'nonrenewable_energy_consumed' => $required . 'numeric',
             'energy_consumed_unit' => $required . 'string',
             'energy_intensity' => 'nullable|numeric',
             'reduction_achieved' => 'nullable|numeric',
-            'source' => 'nullable|string',
+            'source' => $required . 'string',
+        ];
+    }
+
+    protected function getRequiredFields(): array
+    {
+        return [
+            'company_id',
+            'reporting_year',
+            'renewable_energy_consumed',
+            'nonrenewable_energy_consumed',
+            'energy_consumed_unit',
+            'source',
         ];
     }
 }

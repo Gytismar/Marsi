@@ -26,12 +26,26 @@ class Gri403HealthSafetyController extends AbstractGriController
         return [
             'company_id' => $required . 'integer',
             'reporting_year' => $required . 'integer',
-            'total_workforce' => 'nullable|integer',
-            'incidents_of_injury' => 'nullable|integer',
-            'lost_days' => 'nullable|integer',
+            'total_workforce' => $required . 'integer',
+            'incidents_of_injury' => $required . 'integer',
+            'lost_days' => $required . 'integer',
             'fatalities' => 'nullable|integer',
-            'health_safety_training' => 'nullable|boolean',
-            'management_system_coverage' => 'nullable|boolean',
+            'health_safety_training' => $required . 'numeric',
+            'management_system_coverage' => $required . 'string',
         ];
     }
+
+    protected function getRequiredFields(): array
+    {
+        return [
+            'company_id',
+            'reporting_year',
+            'total_workforce',
+            'incidents_of_injury',
+            'lost_days',
+            'health_safety_training',
+            'management_system_coverage',
+        ];
+    }
+
 }

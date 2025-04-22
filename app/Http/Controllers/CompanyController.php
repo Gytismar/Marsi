@@ -28,4 +28,13 @@ class CompanyController extends AbstractGriController
             'size' => $request->isMethod('post') ? 'required|string' : 'sometimes|string',
         ];
     }
+    protected function getRequiredFields(): array
+    {
+        return [
+            'company_name',
+            'industry',
+            'country',
+            'size',
+        ];
+    }
 }
