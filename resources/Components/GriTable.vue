@@ -19,7 +19,7 @@
                 </div>
 
                 <button
-                    @click="showForm = true"
+                    @click="showAddForm"
                     class="bg-green-600 hover:bg-green-700 text-white font-medium px-6 py-3 rounded-lg flex items-center gap-2 transition-all shadow-md hover:shadow-lg"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -29,53 +29,6 @@
                 </button>
             </div>
 
-            <!-- Form -->
-            <transition name="fade">
-                <div v-if="showForm" class="mb-8 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
-                    <div class="bg-gray-50 px-6 py-4 border-b border-gray-100">
-                        <h2 class="text-xl font-semibold text-gray-800">
-                            {{ form.id ? 'Update Entry' : 'Create New Entry' }}
-                        </h2>
-                    </div>
-
-                    <form @submit.prevent="handleSubmit" class="p-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div v-for="column in columns" :key="column" class="space-y-2">
-                                <label class="block text-sm font-medium text-gray-700 capitalize">
-                                    {{ columnLabels[column] ?? column.replace(/_/g, ' ') }}
-                                </label>
-                                <input
-                                    v-model="form[column]"
-                                    :type="getInputType(column)"
-                                    class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm transition-colors"
-                                    :placeholder="`Enter ${columnLabels[column] ?? column.replace(/_/g, ' ')}`"
-                                    :class="{'bg-blue-50': form[column]}"
-                                />
-                            </div>
-                        </div>
-
-                        <div class="flex items-center justify-end mt-8 space-x-4">
-                            <button
-                                @click="resetForm"
-                                type="button"
-                                class="px-5 py-2.5 border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition-colors"
-                            >
-                                Cancel
-                            </button>
-                            <button
-                                type="submit"
-                                class="px-5 py-2.5 text-white font-medium rounded-lg shadow-sm hover:shadow transition-all"
-                                :class="{'bg-green-600 hover:bg-green-700': !form.id, 'bg-yellow-500 hover:bg-yellow-600': form.id}"
-                                style="min-width: 90px;"
-                            >
-                                {{ form.id ? 'Update' : 'Add' }}
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </transition>
-
-            <!-- Table -->
             <div class="bg-white rounded-xl shadow-lg border-2 border-gray-200 overflow-hidden">
                 <div class="overflow-x-auto">
                     <table class="min-w-full border-collapse">
@@ -87,7 +40,21 @@
                                 class="px-6 py-4 text-left text-[11px] font-semibold text-gray-700 uppercase tracking-wide"
                                 :title="columnTooltips[col] ?? ''"
                             >
-                                {{ columnLabels[col] ?? col.replace(/_/g, ' ') }}
+                                <div class="flex items-center gap-1">
+                                    {{ columnLabels[col] ?? col.replace(/_/g, ' ') }}
+                                    <button @click="sortBy(col)" class="text-gray-400 hover:text-blue-600">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path
+                                                :d="sortColumn === col && sortDirection === 'asc'
+                                                        ? 'M5 15l7-7 7 7'
+                                                        : 'M19 9l-7 7-7-7'"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                            />
+                                        </svg>
+                                    </button>
+                                </div>
                             </th>
                             <th class="px-8 py-5 text-right text-xs font-bold text-gray-700 uppercase tracking-wider">
                                 Actions
@@ -95,11 +62,7 @@
                         </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-200">
-                        <tr
-                            v-for="row in rows"
-                            :key="row.id"
-                            class="hover:bg-blue-50 transition-colors"
-                        >
+                        <tr v-for="row in rows" :key="row.id" class="hover:bg-blue-50 transition-colors">
                             <td
                                 v-for="col in columns"
                                 :key="col"
@@ -119,7 +82,7 @@
                                     </svg>
                                 </button>
                                 <button
-                                    @click="confirmDelete(row.energy_id)"
+                                    @click="confirmDelete(row.id)"
                                     class="p-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
                                     title="Delete"
                                 >
@@ -145,9 +108,7 @@
         <div v-if="showDeleteModal" class="fixed inset-0 bg-gray-900 bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-50">
             <div class="bg-white rounded-xl shadow-xl max-w-md w-full mx-4 overflow-hidden transform transition-all animate-fadeIn">
                 <div class="bg-gradient-to-r from-red-50 to-red-100 px-6 py-4 border-b border-red-200">
-                    <div class="flex items-center">
-                        <h3 class="text-lg font-semibold text-red-800">Confirm Deletion</h3>
-                    </div>
+                    <h3 class="text-lg font-semibold text-red-800">Confirm Deletion</h3>
                 </div>
                 <div class="p-6">
                     <p class="text-gray-700">Are you sure you want to delete this item? This action cannot be undone.</p>
@@ -160,6 +121,59 @@
                         </button>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- Form Modal -->
+        <div v-if="showFormModal" class="fixed inset-0 bg-gray-900 bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-50">
+            <div class="bg-white rounded-xl shadow-xl max-w-3xl w-full mx-4 overflow-hidden animate-fadeIn">
+                <div class="bg-gray-100 px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+                    <h2 class="text-xl font-semibold text-gray-800">
+                        {{ form.id ? 'Update Entry' : 'Create New Entry' }}
+                    </h2>
+                    <button @click="cancelForm" class="text-gray-500 hover:text-gray-700 text-xl">&times;</button>
+                </div>
+
+                <form @submit.prevent="handleSubmit" class="p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div v-for="column in columns" :key="column" class="space-y-2">
+                            <label class="block text-sm font-medium text-gray-700 capitalize">
+                                {{ columnLabels[column] ?? column.replace(/_/g, ' ') }}
+                                <span v-if="requiredFields.includes(column)" class="text-red-500">*</span>
+                            </label>
+                            <input
+                                v-model="form[column]"
+                                :type="getInputType(column)"
+                                :placeholder="`Enter ${props.columnLabels[column] ?? column.replace(/_/g, ' ')}`"
+                                :class="[
+                                'w-full border rounded-lg px-4 py-2.5 shadow-sm transition-colors focus:ring-2 focus:ring-blue-500 focus:border-blue-500',
+                                form[column] ? 'bg-blue-50' : '',
+                                validationErrors[column] ? 'border-red-500' : 'border-gray-300']"
+                            />
+                            <p v-if="validationErrors[column]" class="text-sm text-red-600">
+                                {{ validationErrors[column] }}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-end mt-8 space-x-4">
+                        <button
+                            @click="cancelForm"
+                            type="button"
+                            class="px-5 py-2.5 border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition-colors"
+                        >
+                            Cancel
+                        </button>
+                        <button
+                            type="submit"
+                            class="px-5 py-2.5 text-white font-medium rounded-lg shadow-sm hover:shadow transition-all"
+                            :class="{'bg-green-600 hover:bg-green-700': !form.id, 'bg-yellow-500 hover:bg-yellow-600': form.id}"
+                            style="min-width: 90px;"
+                        >
+                            {{ form.id ? 'Update' : 'Add' }}
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </AppLayout>
@@ -191,15 +205,21 @@ const props = defineProps({
 const columns = ref([])
 const rows = ref([])
 const form = ref({})
-const showForm = ref(false)
+const showFormModal = ref(false)
 const showDeleteModal = ref(false)
 const deleteId = ref(null)
+const sortColumn = ref(null)
+const sortDirection = ref('asc')
+const requiredFields = ref([])
+const errors = ref({})
+const validationErrors = ref({})
 
 const fetchSchema = async () => {
     try {
         const { data } = await axios.get(`${props.apiEndpoint}/schema`)
-        columns.value = data
-        resetForm()
+        columns.value = Array.from(new Set(['id', ...data.fields]))
+        requiredFields.value = data.required || []
+        form.value = {}
     } catch (error) {
         console.error('Error fetching schema:', error)
     }
@@ -208,13 +228,27 @@ const fetchSchema = async () => {
 const fetchData = async () => {
     try {
         const { data } = await axios.get(props.apiEndpoint)
-        rows.value = data
+        rows.value = data.sort((a, b) => a.id - b.id)
+        sortColumn.value = 'id'
+        sortDirection.value = 'asc'
     } catch (error) {
         console.error('Error fetching data:', error)
     }
 }
 
 const handleSubmit = async () => {
+    validationErrors.value = {} // reset errors
+
+    let hasError = false
+    for (const field of requiredFields.value) {
+        if (!form.value[field]) {
+            validationErrors.value[field] = `${props.columnLabels[field] ?? field} is required`
+            hasError = true
+        }
+    }
+
+    if (hasError) return
+
     try {
         const url = form.value.id ? `${props.apiEndpoint}/${form.value.id}` : props.apiEndpoint
         const method = form.value.id ? 'put' : 'post'
@@ -228,34 +262,38 @@ const handleSubmit = async () => {
 
 const editRow = (row) => {
     form.value = { ...row }
-    showForm.value = true
-    setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100)
+    showFormModal.value = true
+}
+
+const showAddForm = () => {
+    form.value = {}
+    showFormModal.value = true
 }
 
 const confirmDelete = (id) => {
-    console.log('confirmDelete called with:', id)
     deleteId.value = id
     showDeleteModal.value = true
 }
 
 const deleteRow = async (id) => {
-    if (!id || isNaN(id)) {
-        console.error('Invalid delete ID:', id)
-        return
-    }
-
+    if (!id || isNaN(id)) return
     try {
         await axios.delete(`${props.apiEndpoint}/${id}`)
         showDeleteModal.value = false
-        window.location.reload()
+        await fetchData()
     } catch (error) {
         console.error('Error deleting row:', error)
     }
 }
 
+const cancelForm = () => {
+    form.value = {}
+    showFormModal.value = false
+}
+
 const resetForm = () => {
     form.value = {}
-    showForm.value = false
+    showFormModal.value = false
 }
 
 const getInputType = (column) => {
@@ -265,6 +303,28 @@ const getInputType = (column) => {
     if (column.includes('date')) return 'date'
     if (column.includes('url') || column.includes('website')) return 'url'
     return 'text'
+}
+
+const sortBy = (column) => {
+    if (sortColumn.value === column) {
+        sortDirection.value = sortDirection.value === 'asc' ? 'desc' : 'asc'
+    } else {
+        sortColumn.value = column
+        sortDirection.value = 'asc'
+    }
+
+    rows.value.sort((a, b) => {
+        const valA = a[column]
+        const valB = b[column]
+        if (valA === null || valA === undefined) return 1
+        if (valB === null || valB === undefined) return -1
+        if (typeof valA === 'number' && typeof valB === 'number') {
+            return sortDirection.value === 'asc' ? valA - valB : valB - valA
+        }
+        return sortDirection.value === 'asc'
+            ? String(valA).localeCompare(String(valB))
+            : String(valB).localeCompare(String(valA))
+    })
 }
 
 onMounted(async () => {
