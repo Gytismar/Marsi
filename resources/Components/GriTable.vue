@@ -18,15 +18,48 @@
                     </a>
                 </div>
 
-                <button
-                    @click="showAddForm"
-                    class="bg-green-600 hover:bg-green-700 text-white font-medium px-6 py-3 rounded-lg flex items-center gap-2 transition-all shadow-md hover:shadow-lg"
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
-                    </svg>
-                    Add
-                </button>
+                <div class="flex items-center gap-4">
+                    <!-- Import Dropdown -->
+                    <div class="relative import-dropdown-wrapper">
+                        <button
+                            @click="showImportDropdown = !showImportDropdown"
+                            class="bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-3 rounded-lg flex items-center gap-2 shadow-md hover:shadow-lg transition-all"
+                        >
+                            Import
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M5 10a1 1 0 011-1h3V6a1 1 0 112 0v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 01-1-1z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+
+                        <div
+                            v-if="showImportDropdown"
+                            class="absolute right-0 mt-2 w-56 bg-white rounded-md shadow-lg z-50 border border-gray-200"
+                        >
+                            <button
+                                class="w-full text-left px-4 py-2 hover:bg-blue-50 text-sm text-gray-700"
+                                @click="openUploadModal"
+                            >
+                                Import from File
+                            </button>
+                            <button
+                                class="w-full text-left px-4 py-2 hover:bg-blue-50 text-sm text-gray-700"
+                                @click="openRemoteModal"
+                            >
+                                Import From URL
+                            </button>
+                        </div>
+                    </div>
+
+                    <button
+                        @click="showAddForm"
+                        class="bg-green-600 hover:bg-green-700 text-white font-medium px-6 py-3 rounded-lg flex items-center gap-2 transition-all shadow-md hover:shadow-lg"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+                        </svg>
+                        Add
+                    </button>
+                </div>
             </div>
 
             <div class="bg-white rounded-xl shadow-lg border-2 border-gray-200 overflow-hidden">
@@ -177,12 +210,33 @@
                 </form>
             </div>
         </div>
+
+        <!-- Import Modals -->
+        <UploadCsvModal
+            v-if="showUploadModal"
+            :columns="columns"
+            :column-labels="columnLabels"
+            :api-endpoint="apiEndpoint"
+            @close="showUploadModal = false"
+        />
+
+        <ImportCsvUrlModal
+            v-if="showRemoteModal"
+            :columns="columns"
+            :column-labels="columnLabels"
+            :api-endpoint="apiEndpoint"
+            @close="showRemoteModal = false"
+            @fetched="openUploadWithParsed"
+        />
     </AppLayout>
 </template>
 
 <script setup>
+import {ref, onUnmounted, onMounted} from 'vue'
 import AppLayout from '../Layouts/AppLayout.vue'
 import useGriTableLogic from './useGriTableLogic.js'
+import UploadCsvModal from './Import/UploadCsvModal.vue'
+import ImportCsvUrlModal from './Import/ImportCsvUrlModal.vue'
 
 const props = defineProps({
     apiEndpoint: String,
@@ -199,5 +253,58 @@ const {
     handleSubmit, editRow, showAddForm, confirmDelete, deleteRow,
     cancelForm, resetForm, getInputType, sortBy,
 } = useGriTableLogic(props)
+
+const showImportDropdown = ref(false)
+const showUploadModal = ref(false)
+const showRemoteModal = ref(false)
+
+const toggleImportDropdown = () => {
+    showImportDropdown.value = !showImportDropdown.value
+    if (showImportDropdown.value) {
+        document.addEventListener('click', handleClickOutside)
+    }
+}
+
+const openUploadWithParsed = (parsedData) => {
+    showRemoteModal.value = false
+    showUploadModal.value = true
+    window.dispatchEvent(new CustomEvent('csv-parsed', { detail: parsedData }))
+}
+
+const handleClickOutside = (event) => {
+    const dropdown = document.querySelector('.import-dropdown-wrapper')
+    if (dropdown && !dropdown.contains(event.target)) {
+        showImportDropdown.value = false
+        document.removeEventListener('click', handleClickOutside)
+    }
+}
+
+// Clean up on unmount
+onUnmounted(() => {
+    document.removeEventListener('click', handleClickOutside)
+})
+
+const openUploadModal = () => {
+    showUploadModal.value = true
+    showImportDropdown.value = false
+}
+const openRemoteModal = () => {
+    showRemoteModal.value = true
+    showImportDropdown.value = false
+}
+
+onMounted(() => {
+    window.addEventListener('refresh-gri-data', loadRows)
+})
+
+onUnmounted(() => {
+    window.removeEventListener('refresh-gri-data', loadRows)
+})
+
+async function loadRows() {
+    const response = await axios.get(props.apiEndpoint)
+    rows.value = response.data
+}
+
 </script>
 

@@ -41,4 +41,15 @@ abstract class Service
     {
         return $this->model()->getFillable();
     }
+
+    public function bulkCreate(array $rows): array
+    {
+        $created = [];
+
+        foreach ($rows as $row) {
+            $created[] = $this->create($row);
+        }
+
+        return $created;
+    }
 }

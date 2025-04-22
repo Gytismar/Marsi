@@ -48,5 +48,35 @@ abstract class AbstractGriController extends LaravelController
             'required' => $this->getRequiredFields(),
         ]);
     }
+
+    public function bulkImport(Request $request): JsonResponse
+    {
+        $rows = $request->all();
+
+        if (!is_array($rows)) {
+            return response()->json(['error' => 'Invalid data format. Expected an array of objects.'], 422);
+        }
+
+        $validatedRows = [];
+
+        foreach ($rows as $index => $row) {
+            try {
+                $validated = validator($row, $this->validationRules(new Request($row)))->validate();
+                $validatedRows[] = $validated;
+            } catch (\Illuminate\Validation\ValidationException $e) {
+                return response()->json([
+                    'error' => "Validation failed on row {$index}.",
+                    'details' => $e->errors(),
+                ], 422);
+            }
+        }
+
+        $created = $this->service()->bulkCreate($validatedRows);
+
+        return response()->json([
+            'message' => 'Bulk import completed.',
+            'imported' => count($created),
+        ], 201);
+    }
 }
 
