@@ -19,7 +19,7 @@
                 <!-- Excel Upload Button -->
                 <button
                     class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors shadow"
-                    @click="() => alert('Excel import not implemented yet')"
+                    @click="showFeatureMessage('Excel')"
                 >
                     Upload Excel File
                 </button>
@@ -27,7 +27,7 @@
                 <!-- JSON Upload Button -->
                 <button
                     class="px-4 py-2 bg-violet-600 text-white rounded hover:bg-violet-700 transition-colors shadow"
-                    @click="() => alert('JSON import not implemented yet')"
+                    @click="showFeatureMessage('JSON')"
                 >
                     Upload JSON File
                 </button>
@@ -69,7 +69,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-import useGriImportLogic from './useGriImportLogic.js'
+import useGriFileImportLogic from './useGriFileImportLogic.js'
 
 const emit = defineEmits(['close'])
 
@@ -83,7 +83,7 @@ const props = defineProps({
 const {
     csvData, columnMap, loading, error,
     parseCsvFile, uploadToApi
-} = useGriImportLogic(props.apiEndpoint)
+} = useGriFileImportLogic(props.apiEndpoint)
 
 const headers = ref([])
 const successMessage = ref('')
@@ -123,6 +123,10 @@ function onImportSuccess() {
         window.dispatchEvent(new Event('refresh-gri-data'))
         successMessage.value = ''
     }, 2000)
+}
+
+const showFeatureMessage = (type) => {
+    error.value = `${type} upload failed to load, please try again.`
 }
 
 onMounted(() => {

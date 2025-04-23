@@ -2,7 +2,7 @@ import { ref } from 'vue'
 import axios from 'axios'
 import Papa from 'papaparse'
 
-export default function useGriImportLogic(apiEndpoint) {
+export default function useGriFileImportLogic(apiEndpoint) {
     const csvData = ref([])
     const columnMap = ref({})
     const loading = ref(false)

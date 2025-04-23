@@ -212,7 +212,7 @@
         </div>
 
         <!-- Import Modals -->
-        <UploadCsvModal
+        <UploadFileModal
             v-if="showUploadModal"
             :columns="columns"
             :column-labels="columnLabels"
@@ -221,7 +221,7 @@
             @close="() => { showUploadModal = false; externalParsedCsv = null }"
         />
 
-        <ImportCsvUrlModal
+        <ImportFromUrlModal
             v-if="showRemoteModal"
             :columns="columns"
             :column-labels="columnLabels"
@@ -236,8 +236,8 @@
 import { ref, onUnmounted, onMounted, nextTick } from 'vue'
 import AppLayout from '../Layouts/AppLayout.vue'
 import useGriTableLogic from './useGriTableLogic.js'
-import UploadCsvModal from './Import/UploadCsvModal.vue'
-import ImportCsvUrlModal from './Import/ImportCsvUrlModal.vue'
+import UploadFileModal from './Import/UploadFileModal.vue'
+import ImportFromUrlModal from './Import/ImportFromUrlModal.vue'
 
 const props = defineProps({
     apiEndpoint: String,

@@ -1,7 +1,7 @@
 <template>
     <div class="fixed inset-0 bg-gray-900 bg-opacity-60 flex items-center justify-center z-50">
         <div class="bg-white p-6 rounded-lg max-w-md w-full space-y-4">
-            <h2 class="text-xl font-bold text-gray-800">Import CSV from URL</h2>
+            <h2 class="text-xl font-bold text-gray-800">Import Data from URL</h2>
 
             <input v-model="url" placeholder="CSV URL" class="w-full border px-2 py-1 rounded" />
             <input v-model="username" placeholder="Username" class="w-full border px-2 py-1 rounded" />

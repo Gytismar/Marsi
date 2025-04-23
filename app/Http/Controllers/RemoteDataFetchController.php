@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
-class CsvProxyController extends Controller
+class RemoteDataFetchController extends Controller
 {
     public function fetch(Request $request)
     {
