@@ -20,6 +20,9 @@ class Gri303Water extends Model
         'water_discharge',
         'discharge_destination',
         'water_consumption',
+        'water_recycled',
+        'unit',
+        'source',
     ];
 
     public function company(): BelongsTo

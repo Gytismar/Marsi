@@ -23,6 +23,9 @@ class Gri303WaterFactory extends Factory
             'water_discharge' => $this->faker->randomFloat(2, 50, 8000),
             'discharge_destination' => $this->faker->randomElement($dischargeDestinations),
             'water_consumption' => $this->faker->randomFloat(2, 50, 9000),
+            'water_recycled' => $this->faker->randomFloat(2, 0, 5000),
+            'unit' => 'm³',
+            'source' => 'Metinis ataskaitos dokumentas',
         ];
     }
 }

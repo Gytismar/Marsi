@@ -28,6 +28,9 @@ class Gri303WaterController extends AbstractGriController
             'company_id' => $required . 'integer',
             'reporting_year' => $required . 'integer',
             'water_withdrawn' => $required . 'numeric',
+            'water_source_type' => $required . 'string',
+            'discharge_destination' => $required . 'string',
+            'water_consumption' => $required . 'numeric',
             'water_recycled' => 'nullable|numeric',
             'water_discharge' => 'nullable|numeric',
             'unit' => $required . 'string',
@@ -44,5 +47,33 @@ class Gri303WaterController extends AbstractGriController
             'unit',
             'source',
         ];
+    }
+
+    public function schema(): JsonResponse
+    {
+        return response()->json([
+            'fields' => [
+                'company_id',
+                'reporting_year',
+                'water_withdrawn',
+                'water_source_type',
+                'water_discharge',
+                'discharge_destination',
+                'water_consumption',
+                'water_recycled',
+                'unit',
+                'source',
+            ],
+            'required' => [
+                'company_id',
+                'reporting_year',
+                'water_withdrawn',
+                'water_source_type',
+                'discharge_destination',
+                'water_consumption',
+                'unit',
+                'source',
+            ],
+        ]);
     }
 }

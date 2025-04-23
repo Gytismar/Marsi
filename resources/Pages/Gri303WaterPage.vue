@@ -10,7 +10,7 @@
 </template>
 
 <script setup>
-import GriTable from '../Components/GriTable.vue';
+import GriTable from '../Components/GriTable.vue'
 
 const columnLabels = {
     company_id: 'Įmonės ID',
@@ -20,7 +20,10 @@ const columnLabels = {
     water_discharge: 'Išleidžiamo vandens kiekis (m³)',
     discharge_destination: 'Išleidimo vieta',
     water_consumption: 'Suvartotas vanduo (m³)',
-};
+    water_recycled: 'Pakartotinai panaudotas vanduo (m³)',
+    unit: 'Matavimo vienetas',
+    source: 'Šaltinis',
+}
 
 const columnTooltips = {
     company_id: 'Įmonės identifikatorius.',
@@ -30,5 +33,8 @@ const columnTooltips = {
     water_discharge: 'Išleistas vandens kiekis po naudojimo.',
     discharge_destination: 'Kur buvo išleistas vanduo – į gamtą, miesto kanalizaciją ir pan.',
     water_consumption: 'Vandens kiekis, kuris buvo sunaudotas ir neišleistas.',
-};
+    water_recycled: 'Kiekis vandens, kuris buvo pakartotinai panaudotas po perdirbimo.',
+    unit: 'Vandens kiekio matavimo vienetas (pvz., m³).',
+    source: 'Duomenų šaltinis arba paaiškinimas.',
+}
 </script>

@@ -17,12 +17,14 @@ return new class extends Migration
             $table->smallInteger('reporting_year');
             $table->decimal('water_withdrawn', 10, 2);
             $table->string('water_source_type');
-            $table->decimal('water_discharge', 10, 2);
+            $table->decimal('water_discharge', 10, 2)->nullable();
             $table->string('discharge_destination');
             $table->decimal('water_consumption', 10, 2);
+            $table->decimal('water_recycled', 10, 2)->nullable();
+            $table->string('unit');
+            $table->string('source');
             $table->timestamps();
         });
-
     }
 
     /**
