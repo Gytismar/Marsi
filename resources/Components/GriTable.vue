@@ -1,6 +1,16 @@
 <template>
     <AppLayout>
         <div class="p-8 w-full max-w-screen-2xl mx-auto">
+            <div class="mb-4">
+                <nav class="text-sm text-gray-600 flex items-center gap-2">
+                    <a href="/" class="breadcrumb-link">Pagrindinis</a>
+                    <span>/</span>
+                    <a href="/duomenys" class="breadcrumb-link">Duomenys</a>
+                    <span>/</span>
+                    <span class="breadcrumb-current">{{ title }}</span>
+                </nav>
+                <button class="back-button" @click="goBack">← Grįžti atgal</button>
+            </div>
             <div class="flex justify-between items-center mb-8">
                 <div class="flex items-center gap-4">
                     <div class="flex items-center gap-2">
@@ -320,4 +330,40 @@ async function loadRows() {
     const response = await axios.get(props.apiEndpoint)
     rows.value = response.data
 }
+
+const goBack = () => {
+    window.history.back()
+}
 </script>
+
+<style scoped>
+.breadcrumb-link {
+    text-decoration: none;
+    color: #007b5e;
+    font-weight: 500;
+}
+.breadcrumb-link:hover {
+    text-decoration: underline;
+}
+.breadcrumb-current {
+    color: #444;
+    font-weight: 600;
+}
+
+.back-button {
+    margin-top: 0.25rem;
+    margin-bottom: 1rem;
+    background: none;
+    border: none;
+    color: #007b5e;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.2s ease;
+}
+
+.back-button:hover {
+    color: #004f3f;
+}
+</style>
