@@ -2,28 +2,36 @@
     <AppLayout>
         <div class="p-8 w-full max-w-screen-2xl mx-auto">
             <div class="flex justify-between items-center mb-8">
-                <div class="flex items-center gap-2">
-                    <h1 class="text-3xl font-bold text-gray-800">{{ title }}</h1>
-                    <a
-                        v-if="infoUrl"
-                        :href="infoUrl"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="text-gray-500 hover:text-blue-600"
-                        :title="infoTooltip"
+                <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-2">
+                        <h1 class="text-3xl font-bold text-gray-800">{{ title }}</h1>
+                        <a v-if="infoUrl" :href="infoUrl" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-blue-600" :title="infoTooltip">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M18 10A8 8 0 11 2 10a8 8 0 0116 0zM9 8a1 1 0 112 0v4a1 1 0 11-2 0V8zm1-4a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Export Button now next to title -->
+                    <button
+                        @click="showExportModal = true"
+                        class="text-white font-medium px-5 py-2 rounded-lg flex items-center gap-2 shadow hover:shadow-lg transition-all"
+                        style="background-color: #538ca9;"
                     >
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M18 10A8 8 0 11 2 10a8 8 0 0116 0zM9 8a1 1 0 112 0v4a1 1 0 11-2 0V8zm1-4a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" clip-rule="evenodd" />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v16h16V4H4zm8 5v6m0 0l-3-3m3 3l3-3" />
                         </svg>
-                    </a>
+                        Export
+                    </button>
                 </div>
 
                 <div class="flex items-center gap-4">
-                    <!-- Import Dropdown -->
+                    <!-- Import and Add buttons -->
                     <div class="relative import-dropdown-wrapper">
                         <button
                             @click="showImportDropdown = !showImportDropdown"
-                            class="bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-3 rounded-lg flex items-center gap-2 shadow-md hover:shadow-lg transition-all"
+                            class="text-white font-medium px-6 py-3 rounded-lg flex items-center gap-2 shadow-md hover:shadow-lg transition-all"
+                            style="background-color: #b480ba;"
                         >
                             Import
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
@@ -230,6 +238,14 @@
             @fetched="openUploadWithParsed"
         />
     </AppLayout>
+
+    <ExportModal
+        v-if="showExportModal"
+        :rows="rows"
+        :columns="columns"
+        :title="title"
+        @close="showExportModal = false"
+    />
 </template>
 
 <script setup>
@@ -238,6 +254,8 @@ import AppLayout from '../Layouts/AppLayout.vue'
 import useGriTableLogic from './useGriTableLogic.js'
 import UploadFileModal from './Import/UploadFileModal.vue'
 import ImportFromUrlModal from './Import/ImportFromUrlModal.vue'
+import ExportModal from './Export/ExportModal.vue'
+const showExportModal = ref(false)
 
 const props = defineProps({
     apiEndpoint: String,
