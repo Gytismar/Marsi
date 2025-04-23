@@ -35,6 +35,15 @@ Route::get('/duomenys', function () {
     return view('app', ['page' => 'data']);
 });
 
+Route::get('/informacija', fn() => view('app', ['page' => 'info']));
+
+Route::get('/informacija/g302-energy', fn() => view('app', ['page' => 'griinfo302']));
+Route::get('/informacija/g303-water', fn() => view('app', ['page' => 'griinfo303']));
+Route::get('/informacija/g305-emissions', fn() => view('app', ['page' => 'griinfo305']));
+Route::get('/informacija/g306-waste', fn() => view('app', ['page' => 'griinfo306']));
+Route::get('/informacija/g403-health-safety', fn() => view('app', ['page' => 'griinfo403']));
+Route::get('/informacija/g2-governance', fn() => view('app', ['page' => 'griinfo2']));
+
 
 Route::get('/login', [AuthGRIController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthGRIController::class, 'login']);

@@ -1,0 +1,35 @@
+.standard-page {
+    padding: 2rem;
+    max-width: 800px;
+}
+
+.standard-page h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.standard-page p {
+    font-size: 1.1rem;
+    margin-bottom: 1.2rem;
+    color: #444;
+}
+
+.external-link {
+    color: #007b5e;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.external-link:hover {
+    color: #004f3f;
+}
+
+.fields-list {
+    margin: 1rem 0 2rem;
+    padding-left: 1rem;
+    list-style: disc;
+}
+
+.fields-list li {
+    margin-bottom: 0.75rem;
+}

@@ -51,7 +51,7 @@ const menuItems = [
     { text: 'Pagrindinis', icon: homeIcon },
     { text: 'Duomenys', icon: dataIcon, route: '/duomenys' },
     { text: 'Ataskaitos', icon: reportsIcon },
-    { text: 'Informacija', icon: infoIcon },
+    { text: 'Informacija', icon: infoIcon, route: '/informacija' },
 ];
 </script>
 
