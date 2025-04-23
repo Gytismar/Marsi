@@ -15,8 +15,19 @@
                 <nav>
                     <ul>
                         <li v-for="item in menuItems" :key="item.text">
-                            <img :src="item.icon" :alt="`${item.text} Icon`" />
-                            <span>{{ item.text }}</span>
+                            <a
+                                v-if="item.route"
+                                :href="item.route"
+                                class="menu-link"
+                                style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: inherit;"
+                            >
+                                <img :src="item.icon" :alt="`${item.text} Icon`" />
+                                <span>{{ item.text }}</span>
+                            </a>
+                            <div v-else style="display: flex; align-items: center; gap: 0.75rem;">
+                                <img :src="item.icon" :alt="`${item.text} Icon`" />
+                                <span>{{ item.text }}</span>
+                            </div>
                         </li>
                     </ul>
                 </nav>
@@ -38,7 +49,7 @@ import infoIcon from '@/assets/icons/info.png';
 
 const menuItems = [
     { text: 'Pagrindinis', icon: homeIcon },
-    { text: 'Duomenys', icon: dataIcon },
+    { text: 'Duomenys', icon: dataIcon, route: '/duomenys' },
     { text: 'Ataskaitos', icon: reportsIcon },
     { text: 'Informacija', icon: infoIcon },
 ];

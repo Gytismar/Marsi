@@ -31,6 +31,10 @@ Route::get('/gri/g2-governance', function () {
     return view('app', ['page' => 'gri2']);
 });
 
+Route::get('/duomenys', function () {
+    return view('app', ['page' => 'data']);
+});
+
 
 Route::get('/login', [AuthGRIController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthGRIController::class, 'login']);

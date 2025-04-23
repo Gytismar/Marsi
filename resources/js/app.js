@@ -9,9 +9,11 @@ import Gri305EmissionPage from "../Pages/Gri305EmissionPage.vue";
 import Gri306WastePage from "../Pages/Gri306WastePage.vue";
 import Gri403HealthSafetyPage from "../Pages/Gri403HealthSafetyPage.vue";
 import Gri2GovernancePage from "../Pages/Gri2GovernancePage.vue";
+import DataPage from "../Pages/DataPage.vue";
 
 const pages = {
     home: Home,
+    data: DataPage,
     gri302: Gri302EnergyPage,
     gri303: Gri303WaterPage,
     gri305: Gri305EmissionPage,
