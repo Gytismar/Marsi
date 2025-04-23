@@ -11,7 +11,25 @@ Route::get('/gri/g302-energy', function () {
     return view('app', ['page' => 'gri302']);
 });
 
+Route::get('/gri/g303-water', function () {
+    return view('app', ['page' => 'gri303']);
+});
 
+Route::get('/gri/g305-emissions', function () {
+    return view('app', ['page' => 'gri305']);
+});
+
+Route::get('/gri/g306-waste', function () {
+    return view('app', ['page' => 'gri306']);
+});
+
+Route::get('/gri/g403-health-safety', function () {
+    return view('app', ['page' => 'gri403']);
+});
+
+Route::get('/gri/g2-governance', function () {
+    return view('app', ['page' => 'gri2']);
+});
 
 
 Route::get('/login', [AuthGRIController::class, 'showLoginForm'])->name('login');
