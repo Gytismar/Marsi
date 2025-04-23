@@ -217,7 +217,8 @@
             :columns="columns"
             :column-labels="columnLabels"
             :api-endpoint="apiEndpoint"
-            @close="showUploadModal = false"
+            :initial-parsed-data="externalParsedCsv"
+            @close="() => { showUploadModal = false; externalParsedCsv = null }"
         />
 
         <ImportCsvUrlModal
@@ -232,7 +233,7 @@
 </template>
 
 <script setup>
-import {ref, onUnmounted, onMounted} from 'vue'
+import { ref, onUnmounted, onMounted, nextTick } from 'vue'
 import AppLayout from '../Layouts/AppLayout.vue'
 import useGriTableLogic from './useGriTableLogic.js'
 import UploadCsvModal from './Import/UploadCsvModal.vue'
@@ -257,6 +258,7 @@ const {
 const showImportDropdown = ref(false)
 const showUploadModal = ref(false)
 const showRemoteModal = ref(false)
+const externalParsedCsv = ref(null)
 
 const toggleImportDropdown = () => {
     showImportDropdown.value = !showImportDropdown.value
@@ -267,8 +269,8 @@ const toggleImportDropdown = () => {
 
 const openUploadWithParsed = (parsedData) => {
     showRemoteModal.value = false
+    externalParsedCsv.value = parsedData
     showUploadModal.value = true
-    window.dispatchEvent(new CustomEvent('csv-parsed', { detail: parsedData }))
 }
 
 const handleClickOutside = (event) => {
@@ -279,7 +281,6 @@ const handleClickOutside = (event) => {
     }
 }
 
-// Clean up on unmount
 onUnmounted(() => {
     document.removeEventListener('click', handleClickOutside)
 })
@@ -288,6 +289,7 @@ const openUploadModal = () => {
     showUploadModal.value = true
     showImportDropdown.value = false
 }
+
 const openRemoteModal = () => {
     showRemoteModal.value = true
     showImportDropdown.value = false
@@ -305,6 +307,4 @@ async function loadRows() {
     const response = await axios.get(props.apiEndpoint)
     rows.value = response.data
 }
-
 </script>
-

@@ -77,6 +77,7 @@ const props = defineProps({
     columns: Array,
     columnLabels: Object,
     apiEndpoint: String,
+    initialParsedData: { type: Array, default: null }
 })
 
 const {
@@ -115,11 +116,6 @@ const handleFile = async (e) => {
     updateHeadersAndMapping(parsed)
 }
 
-const handleExternalCsv = (event) => {
-    const parsed = event.detail
-    updateHeadersAndMapping(parsed)
-}
-
 function onImportSuccess() {
     successMessage.value = '✅ Imported successfully!'
     setTimeout(() => {
@@ -131,11 +127,14 @@ function onImportSuccess() {
 
 onMounted(() => {
     window.addEventListener('import-success', onImportSuccess)
-    window.addEventListener('csv-parsed', handleExternalCsv)
+
+    if (props.initialParsedData) {
+        updateHeadersAndMapping(props.initialParsedData)
+    }
 })
 
 onUnmounted(() => {
     window.removeEventListener('import-success', onImportSuccess)
-    window.removeEventListener('csv-parsed', handleExternalCsv)
 })
 </script>
+
