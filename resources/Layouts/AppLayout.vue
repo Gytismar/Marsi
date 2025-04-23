@@ -59,9 +59,9 @@ const menuItems = [
     justify-content: space-between;
     align-items: center;
     padding: 0 1.5rem;
-    height: 80px;
-    min-height: 80px;
-    max-height: 80px;
+    height: 100px;
+    min-height: 100px;
+    max-height: 100px;
     color: white;
     box-sizing: border-box;
 }
@@ -74,7 +74,7 @@ const menuItems = [
 }
 
 .logo img {
-    height: 50px;
+    height: 70px;
     width: auto;
 }
 
@@ -118,8 +118,8 @@ const menuItems = [
 }
 
 .sidebar img {
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
 }
 
 .main-content {
