@@ -1,13 +1,13 @@
 <template>
     <div class="fixed inset-0 bg-gray-900 bg-opacity-60 flex items-center justify-center z-50">
         <div class="bg-white p-6 rounded-lg max-w-3xl w-full space-y-6 shadow-lg">
-            <h2 class="text-xl font-bold text-gray-800">Upload from File</h2>
+            <h2 class="text-xl font-bold text-gray-800">Įkelti iš failo</h2>
 
             <!-- File Upload Buttons -->
             <div class="flex flex-wrap gap-4">
                 <!-- CSV Upload Button -->
                 <label class="inline-block cursor-pointer px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors shadow">
-                    Upload CSV File
+                    Įkelti CSV failą
                     <input
                         type="file"
                         accept=".csv"
@@ -21,7 +21,7 @@
                     class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors shadow"
                     @click="showFeatureMessage('Excel')"
                 >
-                    Upload Excel File
+                    Įkelti Excel failą
                 </button>
 
                 <!-- JSON Upload Button -->
@@ -29,7 +29,7 @@
                     class="px-4 py-2 bg-violet-600 text-white rounded hover:bg-violet-700 transition-colors shadow"
                     @click="showFeatureMessage('JSON')"
                 >
-                    Upload JSON File
+                    Įkelti JSON failą
                 </button>
             </div>
 
@@ -47,13 +47,13 @@
 
             <!-- Actions -->
             <div class="flex justify-end gap-3 pt-4">
-                <button @click="$emit('close')" class="px-4 py-2 text-gray-700 border rounded hover:bg-gray-100">Cancel</button>
+                <button @click="$emit('close')" class="px-4 py-2 text-gray-700 border rounded hover:bg-gray-100">Atšaukti</button>
                 <button
                     @click="uploadToApi"
                     class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
                     :disabled="loading"
                 >
-                    {{ loading ? 'Uploading...' : 'Import' }}
+                    {{ loading ? 'Įkeliama...' : 'Importuoti' }}
                 </button>
             </div>
 

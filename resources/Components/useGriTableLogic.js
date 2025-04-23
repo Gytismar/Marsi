@@ -21,7 +21,7 @@ export default function useGriTableLogic(props) {
             requiredFields.value = data.required || []
             form.value = {}
         } catch (error) {
-            console.error('Error fetching schema:', error)
+            console.error('Klaida gaunant schemą:', error)
         }
     }
 
@@ -32,7 +32,7 @@ export default function useGriTableLogic(props) {
             sortColumn.value = 'id'
             sortDirection.value = 'asc'
         } catch (error) {
-            console.error('Error fetching data:', error)
+            console.error('Klaida gaunant duomenis:', error)
         }
     }
 
@@ -42,7 +42,7 @@ export default function useGriTableLogic(props) {
         let hasError = false
         for (const field of requiredFields.value) {
             if (!form.value[field]) {
-                validationErrors.value[field] = `${props.columnLabels[field] ?? field} is required`
+                validationErrors.value[field] = `${props.columnLabels[field] ?? field} yra privalomas laukelis`
                 hasError = true
             }
         }
@@ -56,7 +56,7 @@ export default function useGriTableLogic(props) {
             await fetchData()
             resetForm()
         } catch (error) {
-            console.error('Error submitting form:', error)
+            console.error('Klaida pateikiant formą:', error)
         }
     }
 
@@ -82,7 +82,7 @@ export default function useGriTableLogic(props) {
             showDeleteModal.value = false
             await fetchData()
         } catch (error) {
-            console.error('Error deleting row:', error)
+            console.error('Klaida trinant įrašą:', error)
         }
     }
 

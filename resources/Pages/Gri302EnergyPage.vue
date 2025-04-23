@@ -1,9 +1,9 @@
 <template>
     <GriTable
         apiEndpoint="/api/v1/gri/g302-energy"
-        title="GRI 302 Energy"
+        title="GRI 302 Energija"
         infoUrl="https://www.youtube.com/watch?v=xvFZjo5PgG0&pp=ygUJcmljayByb2xs"
-        infoTooltip="Click to learn more about GRI 302: Energy"
+        infoTooltip="Spauskite, jei norite sužinoti daugiau apie GRI 302: Energija"
         :columnLabels="columnLabels"
         :columnTooltips="columnTooltips"
     />
@@ -13,26 +13,26 @@
 import GriTable from '../Components/GriTable.vue';
 
 const columnLabels = {
-    company_id: 'Company ID',
-    reporting_year: 'Reporting Year',
-    total_energy_consumed: 'Total Energy (MWh)',
-    renewable_energy_consumed: 'Renewable Energy (MWh)',
-    nonrenewable_energy_consumed: 'Non-Renewable Energy (MWh)',
-    energy_consumed_unit: 'Unit of Measurement',
-    energy_intensity: 'Energy Intensity',
-    reduction_achieved: 'Reduction Achieved (%)',
-    source: 'Data Source',
+    company_id: 'Įmonės ID',
+    reporting_year: 'Atskaitiniai metai',
+    total_energy_consumed: 'Bendras energijos suvartojimas (MWh)',
+    renewable_energy_consumed: 'Atsinaujinančios energijos kiekis (MWh)',
+    nonrenewable_energy_consumed: 'Neatsinaujinančios energijos kiekis (MWh)',
+    energy_consumed_unit: 'Matavimo vienetas',
+    energy_intensity: 'Energijos intensyvumas',
+    reduction_achieved: 'Pasiektas sumažinimas (%)',
+    source: 'Duomenų šaltinis',
 };
 
 const columnTooltips = {
-    company_id: 'Identifier for the company.',
-    reporting_year: 'Year for which the data was reported.',
-    total_energy_consumed: 'Total energy consumed during the reporting period.',
-    renewable_energy_consumed: 'Amount of energy from renewable sources like solar, wind, etc.',
-    nonrenewable_energy_consumed: 'Amount of energy from non-renewable sources such as fossil fuels.',
-    energy_consumed_unit: 'Unit used to measure energy (e.g., MWh, GJ).',
-    energy_intensity: 'Ratio of energy consumption relative to a business metric like revenue or output.',
-    reduction_achieved: 'Percentage reduction in energy usage due to efficiency measures.',
-    source: 'Explanation or reference for where this energy data was obtained.',
+    company_id: 'Įmonės identifikatorius.',
+    reporting_year: 'Metai, už kuriuos pateikiami duomenys.',
+    total_energy_consumed: 'Bendras energijos kiekis, suvartotas per ataskaitinį laikotarpį.',
+    renewable_energy_consumed: 'Energijos kiekis iš atsinaujinančių šaltinių, tokių kaip saulė, vėjas ir pan.',
+    nonrenewable_energy_consumed: 'Energijos kiekis iš neatsinaujinančių šaltinių, pvz., iškastinio kuro.',
+    energy_consumed_unit: 'Energijos matavimo vienetas (pvz., MWh, GJ).',
+    energy_intensity: 'Energijos suvartojimo santykis su verslo rodikliais, tokiais kaip pajamos ar produkcija.',
+    reduction_achieved: 'Procentinis energijos sunaudojimo sumažinimas dėl efektyvumo priemonių.',
+    source: 'Paaiškinimas ar šaltinis, iš kur gauti energijos duomenys.',
 };
 </script>

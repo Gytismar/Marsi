@@ -1,20 +1,20 @@
 <template>
     <div class="fixed inset-0 bg-gray-900 bg-opacity-60 flex items-center justify-center z-50">
         <div class="bg-white p-6 rounded-lg max-w-md w-full space-y-4">
-            <h2 class="text-xl font-bold text-gray-800">Import Data from URL</h2>
+            <h2 class="text-xl font-bold text-gray-800">Importuoti duomenis iš nuorodos</h2>
 
-            <input v-model="url" placeholder="CSV URL" class="w-full border px-2 py-1 rounded" />
-            <input v-model="username" placeholder="Username" class="w-full border px-2 py-1 rounded" />
-            <input v-model="password" placeholder="Password" type="password" class="w-full border px-2 py-1 rounded" />
+            <input v-model="url" placeholder="CSV nuoroda" class="w-full border px-2 py-1 rounded" />
+            <input v-model="username" placeholder="Naudotojo vardas" class="w-full border px-2 py-1 rounded" />
+            <input v-model="password" placeholder="Slaptažodis" type="password" class="w-full border px-2 py-1 rounded" />
 
             <div class="flex justify-end gap-3">
-                <button @click="$emit('close')" class="px-4 py-2 text-gray-700 border rounded">Cancel</button>
+                <button @click="$emit('close')" class="px-4 py-2 text-gray-700 border rounded">Atšaukti</button>
                 <button
                     @click="fetchCsvData"
                     class="px-4 py-2 bg-blue-600 text-white rounded"
                     :disabled="loading"
                 >
-                    {{ loading ? 'Fetching...' : 'Next' }}
+                    {{ loading ? 'Gaunama...' : 'Toliau' }}
                 </button>
             </div>
 

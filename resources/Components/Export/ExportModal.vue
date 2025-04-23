@@ -1,37 +1,38 @@
 <template>
     <div class="fixed inset-0 bg-gray-900 bg-opacity-60 flex items-center justify-center z-50">
         <div class="bg-white p-6 rounded-lg max-w-md w-full space-y-6 shadow-lg">
-            <h2 class="text-xl font-bold text-gray-800">Export Data</h2>
+            <h2 class="text-xl font-bold text-gray-800">Eksportuoti duomenis</h2>
 
             <div class="flex flex-col gap-4">
                 <button
                     @click="exportAs('csv')"
                     class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors shadow"
                 >
-                    Export as CSV
+                    Eksportuoti kaip CSV
                 </button>
 
                 <button
                     @click="exportAs('excel')"
                     class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors shadow"
                 >
-                    Export as Excel
+                    Eksportuoti kaip Excel
                 </button>
 
                 <button
                     @click="exportAs('json')"
                     class="px-4 py-2 bg-violet-600 text-white rounded hover:bg-violet-700 transition-colors shadow"
                 >
-                    Export as JSON
+                    Eksportuoti kaip JSON
                 </button>
             </div>
 
             <div class="text-right pt-2">
-                <button @click="$emit('close')" class="text-gray-500 hover:underline">Cancel</button>
+                <button @click="$emit('close')" class="text-gray-500 hover:underline">Atšaukti</button>
             </div>
         </div>
     </div>
 </template>
+
 
 <script setup>
 import { toRefs } from 'vue'

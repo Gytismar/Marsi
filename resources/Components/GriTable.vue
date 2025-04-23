@@ -12,7 +12,6 @@
                         </a>
                     </div>
 
-                    <!-- Export Button now next to title -->
                     <button
                         @click="showExportModal = true"
                         class="text-white font-medium px-5 py-2 rounded-lg flex items-center gap-2 shadow hover:shadow-lg transition-all"
@@ -21,19 +20,18 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v16h16V4H4zm8 5v6m0 0l-3-3m3 3l3-3" />
                         </svg>
-                        Export
+                        Eksportuoti
                     </button>
                 </div>
 
                 <div class="flex items-center gap-4">
-                    <!-- Import and Add buttons -->
                     <div class="relative import-dropdown-wrapper">
                         <button
                             @click="showImportDropdown = !showImportDropdown"
                             class="text-white font-medium px-6 py-3 rounded-lg flex items-center gap-2 shadow-md hover:shadow-lg transition-all"
                             style="background-color: #b480ba;"
                         >
-                            Import
+                            Importuoti
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M5 10a1 1 0 011-1h3V6a1 1 0 112 0v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 01-1-1z" clip-rule="evenodd" />
                             </svg>
@@ -47,13 +45,13 @@
                                 class="w-full text-left px-4 py-2 hover:bg-blue-50 text-sm text-gray-700"
                                 @click="openUploadModal"
                             >
-                                Import from File
+                                Importuoti iš failo
                             </button>
                             <button
                                 class="w-full text-left px-4 py-2 hover:bg-blue-50 text-sm text-gray-700"
                                 @click="openRemoteModal"
                             >
-                                Import From URL
+                                Importuoti iš nuorodos
                             </button>
                         </div>
                     </div>
@@ -65,7 +63,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
                         </svg>
-                        Add
+                        Pridėti
                     </button>
                 </div>
             </div>
@@ -98,7 +96,7 @@
                                 </div>
                             </th>
                             <th class="px-8 py-5 text-right text-xs font-bold text-gray-700 uppercase tracking-wider">
-                                Actions
+                                Veiksmai
                             </th>
                         </tr>
                         </thead>
@@ -115,7 +113,7 @@
                                 <button
                                     @click="editRow(row)"
                                     class="p-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition-colors mr-2"
-                                    title="Edit"
+                                    title="Redaguoti"
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -125,7 +123,7 @@
                                 <button
                                     @click="confirmDelete(row.id)"
                                     class="p-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
-                                    title="Delete"
+                                    title="Ištrinti"
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -136,7 +134,7 @@
                         </tr>
                         <tr v-if="rows.length === 0">
                             <td :colspan="columns.length + 1" class="px-8 py-10 text-center text-gray-500">
-                                No data available
+                                Duomenų nėra
                             </td>
                         </tr>
                         </tbody>
@@ -145,32 +143,30 @@
             </div>
         </div>
 
-        <!-- Delete Modal -->
         <div v-if="showDeleteModal" class="fixed inset-0 bg-gray-900 bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-50">
             <div class="bg-white rounded-xl shadow-xl max-w-md w-full mx-4 overflow-hidden transform transition-all animate-fadeIn">
                 <div class="bg-gradient-to-r from-red-50 to-red-100 px-6 py-4 border-b border-red-200">
-                    <h3 class="text-lg font-semibold text-red-800">Confirm Deletion</h3>
+                    <h3 class="text-lg font-semibold text-red-800">Patvirtinti ištrynimą</h3>
                 </div>
                 <div class="p-6">
-                    <p class="text-gray-700">Are you sure you want to delete this item? This action cannot be undone.</p>
+                    <p class="text-gray-700">Ar tikrai norite ištrinti šį įrašą? Šis veiksmas negali būti atšauktas.</p>
                     <div class="mt-6 flex justify-end gap-3">
                         <button @click="showDeleteModal = false" class="px-4 py-2 text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50">
-                            Cancel
+                            Atšaukti
                         </button>
                         <button @click="deleteRow(deleteId)" class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg shadow-sm">
-                            Delete
+                            Ištrinti
                         </button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Form Modal -->
         <div v-if="showFormModal" class="fixed inset-0 bg-gray-900 bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-50">
             <div class="bg-white rounded-xl shadow-xl max-w-3xl w-full mx-4 overflow-hidden animate-fadeIn">
                 <div class="bg-gray-100 px-6 py-4 border-b border-gray-200 flex justify-between items-center">
                     <h2 class="text-xl font-semibold text-gray-800">
-                        {{ form.id ? 'Update Entry' : 'Create New Entry' }}
+                        {{ form.id ? 'Atnaujinti įrašą' : 'Sukurti naują įrašą' }}
                     </h2>
                     <button @click="cancelForm" class="text-gray-500 hover:text-gray-700 text-xl">&times;</button>
                 </div>
@@ -178,19 +174,19 @@
                 <form @submit.prevent="handleSubmit" class="p-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div v-for="column in columns" :key="column" class="space-y-2">
-                            <label class="block text-sm font-medium text-gray-700 capitalize">
-                                {{ columnLabels[column] ?? column.replace(/_/g, ' ') }}
+                            <label class="block text-sm font-medium text-gray-700">
+                                {{ (columnLabels[column] ?? column.replace(/_/g, ' ')).charAt(0).toUpperCase() + (columnLabels[column] ?? column.replace(/_/g, ' ')).slice(1).toLowerCase() }}
                                 <span v-if="requiredFields.includes(column)" class="text-red-500">*</span>
                             </label>
                             <input
                                 v-model="form[column]"
                                 :type="getInputType(column)"
-                                :placeholder="`Enter ${columnLabels[column] ?? column.replace(/_/g, ' ')}`"
+                                :placeholder="`${columnLabels[column] ?? column.replace(/_/g, ' ')}`"
                                 :class="[
-                  'w-full border rounded-lg px-4 py-2.5 shadow-sm transition-colors focus:ring-2 focus:ring-blue-500 focus:border-blue-500',
-                  form[column] ? 'bg-blue-50' : '',
-                  validationErrors[column] ? 'border-red-500' : 'border-gray-300'
-                ]"
+                                    'w-full border rounded-lg px-4 py-2.5 shadow-sm transition-colors focus:ring-2 focus:ring-blue-500 focus:border-blue-500',
+                                    form[column] ? 'bg-blue-50' : '',
+                                    validationErrors[column] ? 'border-red-500' : 'border-gray-300'
+                                ]"
                             />
                             <p v-if="validationErrors[column]" class="text-sm text-red-600">
                                 {{ validationErrors[column] }}
@@ -204,7 +200,7 @@
                             type="button"
                             class="px-5 py-2.5 border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition-colors"
                         >
-                            Cancel
+                            Atšaukti
                         </button>
                         <button
                             type="submit"
@@ -212,14 +208,13 @@
                             :class="{'bg-green-600 hover:bg-green-700': !form.id, 'bg-yellow-500 hover:bg-yellow-600': form.id}"
                             style="min-width: 90px;"
                         >
-                            {{ form.id ? 'Update' : 'Add' }}
+                            {{ form.id ? 'Atnaujinti' : 'Pridėti' }}
                         </button>
                     </div>
                 </form>
             </div>
         </div>
 
-        <!-- Import Modals -->
         <UploadFileModal
             v-if="showUploadModal"
             :columns="columns"
