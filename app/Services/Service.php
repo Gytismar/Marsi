@@ -4,6 +4,7 @@ namespace App\Services;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Auth;
 
 abstract class Service
 {
@@ -11,16 +12,33 @@ abstract class Service
 
     public function getAll(): Collection
     {
-        return $this->model()->newQuery()->get();
+        return $this->model()
+            ->newQuery()
+            ->whereHas('company', function ($query) {
+                $query->where('user_id', Auth::id());
+            })
+            ->get();
     }
 
     public function getById(int $id): Model
     {
-        return $this->model()->newQuery()->findOrFail($id);
+        return $this->model()
+            ->newQuery()
+            ->whereHas('company', function ($query) {
+                $query->where('user_id', Auth::id());
+            })
+            ->findOrFail($id);
     }
 
     public function create(array $data): Model
     {
+        if (isset($data['company_id'])) {
+            $company = \App\Models\Company::query()
+                ->where('id', $data['company_id'])
+                ->where('user_id', Auth::id())
+                ->firstOrFail();
+        }
+
         return $this->model()->newQuery()->create($data);
     }
 

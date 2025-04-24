@@ -3,38 +3,59 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Services\CompanyService;
+use App\Models\Company;
+use Illuminate\Support\Facades\Auth;
 
-class CompanyController extends AbstractGriController
+class CompanyController extends Controller
 {
-    protected CompanyService $service;
-
-    public function __construct(CompanyService $service)
+    public function index()
     {
-        $this->service = $service;
+        return response()->json(Auth::user()->companies);
     }
 
-    protected function service(): CompanyService
+    public function store(Request $request)
     {
-        return $this->service;
+        $validated = $request->validate([
+            'company_name' => 'required|string',
+            'company_code' => 'required|string|unique:companies,company_code',
+            'industry' => 'required|string',
+            'country' => 'required|string',
+            'size' => 'required|string',
+        ]);
+
+        $company = Auth::user()->companies()->create($validated);
+
+        return response()->json($company, 201);
     }
 
-    protected function validationRules(Request $request): array
+    public function show($id)
     {
-        return [
-            'company_name' => $request->isMethod('post') ? 'required|string' : 'sometimes|string',
-            'industry' => $request->isMethod('post') ? 'required|string' : 'sometimes|string',
-            'country' => $request->isMethod('post') ? 'required|string' : 'sometimes|string',
-            'size' => $request->isMethod('post') ? 'required|string' : 'sometimes|string',
-        ];
+        $company = Auth::user()->companies()->findOrFail($id);
+        return response()->json($company);
     }
-    protected function getRequiredFields(): array
+
+    public function update(Request $request, $id)
     {
-        return [
-            'company_name',
-            'industry',
-            'country',
-            'size',
-        ];
+        $company = Auth::user()->companies()->findOrFail($id);
+
+        $validated = $request->validate([
+            'company_name' => 'sometimes|string',
+            'company_code' => 'sometimes|string|unique:companies,company_code,' . $company->id,
+            'industry' => 'sometimes|string',
+            'country' => 'sometimes|string',
+            'size' => 'sometimes|string',
+        ]);
+
+        $company->update($validated);
+
+        return response()->json($company);
+    }
+
+    public function destroy($id)
+    {
+        $company = Auth::user()->companies()->findOrFail($id);
+        $company->delete();
+
+        return response()->json(['message' => 'Deleted successfully']);
     }
 }

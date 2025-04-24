@@ -15,6 +15,8 @@ class Company extends Model
         'industry',
         'country',
         'size',
+        'company_code',
+        'user_id',
     ];
 
     public function gri302Energy(): HasMany
@@ -45,6 +47,11 @@ class Company extends Model
     public function gri2Governance(): HasMany
     {
         return $this->hasMany(Gri2Governance::class, 'company_id');
+    }
+
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }
 
