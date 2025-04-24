@@ -48,7 +48,7 @@ import reportsIcon from '@/assets/icons/reports.png';
 import infoIcon from '@/assets/icons/info.png';
 
 const menuItems = [
-    { text: 'Pagrindinis', icon: homeIcon },
+    { text: 'Pagrindinis', icon: homeIcon, route: '/pagrindinis' },
     { text: 'Duomenys', icon: dataIcon, route: '/duomenys' },
     { text: 'Ataskaitos', icon: reportsIcon },
     { text: 'Informacija', icon: infoIcon, route: '/informacija' },

@@ -31,6 +31,8 @@ Route::get('/gri/g2-governance', function () {
     return view('app', ['page' => 'gri2']);
 });
 
+Route::get('/pagrindinis', fn() => view('app', ['page' => 'home']));
+
 Route::get('/duomenys', function () {
     return view('app', ['page' => 'data']);
 });
