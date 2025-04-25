@@ -17,11 +17,11 @@ import GriInfoTemplate from '../../Layouts/GriInfoTemplate.vue';
 const columnLabels = {
     company_id: 'Įmonės ID',
     reporting_year: 'Atskaitiniai metai',
-    water_withdrawn: 'Panaudoto vandens kiekis (m³)',
+    water_withdrawn: 'Panaudoto vandens kiekis',
     water_source_type: 'Vandens šaltinio tipas',
-    water_discharge: 'Išleidžiamo vandens kiekis (m³)',
+    water_discharge: 'Išleidžiamo vandens kiekis',
     discharge_destination: 'Išleidimo vieta',
-    water_consumption: 'Suvartotas vanduo (m³)',
+    water_consumption: 'Suvartotas vanduo',
 };
 
 const columnTooltips = {

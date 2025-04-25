@@ -15,9 +15,9 @@ import GriTable from '../../Components/GriTable.vue';
 const columnLabels = {
     company_id: 'Įmonės ID',
     reporting_year: 'Atskaitiniai metai',
-    total_energy_consumed: 'Bendras energijos suvartojimas (MWh)',
-    renewable_energy_consumed: 'Atsinaujinančios energijos kiekis (MWh)',
-    nonrenewable_energy_consumed: 'Neatsinaujinančios energijos kiekis (MWh)',
+    total_energy_consumed: 'Bendras energijos suvartojimas',
+    renewable_energy_consumed: 'Atsinaujinančios energijos kiekis',
+    nonrenewable_energy_consumed: 'Neatsinaujinančios energijos kiekis',
     energy_consumed_unit: 'Matavimo vienetas',
     energy_intensity: 'Energijos intensyvumas',
     reduction_achieved: 'Pasiektas sumažinimas (%)',
