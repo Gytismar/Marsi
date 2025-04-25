@@ -1,6 +1,6 @@
 <template>
     <AppLayout>
-        <div class="p-8 w-full max-w-screen-2xl mx-auto">
+        <div class="p-8 w-full max-w-screen-3xl mx-auto">
             <div class="mb-4">
                 <nav class="text-sm text-gray-600 flex items-center gap-2">
                     <a href="/" class="breadcrumb-link">Pagrindinis</a>
@@ -86,7 +86,7 @@
                             <th
                                 v-for="col in columns"
                                 :key="col"
-                                class="px-6 py-4 text-left text-[11px] font-semibold text-gray-700 uppercase tracking-wide"
+                                class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wide"
                                 :title="columnTooltips[col] ?? ''"
                             >
                                 <div class="flex items-center gap-1">
@@ -115,7 +115,7 @@
                             <td
                                 v-for="col in columns"
                                 :key="col"
-                                class="px-6 py-3 text-xs text-gray-800 whitespace-nowrap"
+                                class="px-6 py-3 text-sm text-gray-800 whitespace-nowrap"
                             >
                                 {{ row[col] }}
                             </td>
