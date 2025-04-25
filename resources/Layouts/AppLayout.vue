@@ -170,8 +170,11 @@ async function logout() {
 
 .sidebar {
     width: 200px;
+    flex-shrink: 0;
+    flex-grow: 0;
     background-color: #efefef;
     padding: 1rem 0.5rem;
+    box-sizing: border-box;
 }
 
 .sidebar nav ul {
