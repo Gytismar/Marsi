@@ -3,6 +3,15 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthGRIController;
 
+Route::middleware(['auth'])->prefix('v1')->group(function () {
+    Route::get('/me', function () {
+        return response()->json([
+            'auth_id' => Auth::id(),
+            'user' => Auth::user(),
+        ]);
+    });
+});
+
 Route::get('/', function () {
     return view('app', ['page' => 'home']);
 });

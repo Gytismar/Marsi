@@ -14,12 +14,6 @@ use App\Http\Controllers\{CompanyController,
     Gri403HealthSafetyController};
 
 Route::middleware('web')->prefix('v1')->group(function () {
-    Route::get('/me', function () {
-        return response()->json([
-            'auth_id' => Auth::id(),
-            'user' => Auth::user(),
-        ]);
-    });
     Route::apiResource('companies', CompanyController::class);
     Route::post('/fetch-csv', [RemoteDataFetchController::class, 'fetch']);
     Route::prefix('gri')->group(function () {

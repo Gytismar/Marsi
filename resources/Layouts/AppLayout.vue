@@ -4,9 +4,15 @@
             <div class="logo">
                 <img :src="logo" alt="Marsi Logo" />
             </div>
-            <div class="user-greeting">
-                <span>Sveiki, Vartotojas!</span>
+
+            <div class="relative user-greeting" @click="toggleDropdown">
+                <span v-if="userName">Sveiki, {{ userName }}!</span>
+                <span v-else>Įkeliama...</span>
                 <span class="dropdown-arrow">▾</span>
+
+                <div v-if="dropdownOpen" class="dropdown-menu">
+                    <button @click="logout" class="dropdown-item">Atsijungti</button>
+                </div>
             </div>
         </header>
 
@@ -41,11 +47,16 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
 import logo from '@/assets/icons/logo.jpg';
 import homeIcon from '@/assets/icons/home.png';
 import dataIcon from '@/assets/icons/data.png';
 import reportsIcon from '@/assets/icons/reports.png';
 import infoIcon from '@/assets/icons/info.png';
+
+const userName = ref('');
+const dropdownOpen = ref(false);
 
 const menuItems = [
     { text: 'Pagrindinis', icon: homeIcon, route: '/pagrindinis' },
@@ -53,6 +64,29 @@ const menuItems = [
     { text: 'Ataskaitos', icon: reportsIcon },
     { text: 'Informacija', icon: infoIcon, route: '/informacija' },
 ];
+
+onMounted(async () => {
+    try {
+        const response = await axios.get('/v1/me');
+        userName.value = response.data.user?.name ?? 'Vartotojas';
+    } catch (error) {
+        console.error('Klaida gaunant vartotojo informaciją:', error);
+        userName.value = 'Vartotojas';
+    }
+});
+
+function toggleDropdown() {
+    dropdownOpen.value = !dropdownOpen.value;
+}
+
+async function logout() {
+    try {
+        await axios.post('/logout');
+        window.location.href = '/login';
+    } catch (error) {
+        console.error('Klaida atsijungiant:', error);
+    }
+}
 </script>
 
 <style scoped>
@@ -94,6 +128,39 @@ const menuItems = [
     align-items: center;
     gap: 0.25rem;
     font-weight: bold;
+    cursor: pointer;
+    position: relative;
+}
+
+.dropdown-arrow {
+    margin-left: 0.5rem;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    min-width: 120px;
+    margin-top: 0.5rem;
+    z-index: 100;
+}
+
+.dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-item:hover {
+    background-color: #f0f0f0;
 }
 
 .app-body {
