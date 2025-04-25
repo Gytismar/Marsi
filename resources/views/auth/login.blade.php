@@ -44,14 +44,33 @@
             background: #f9fafb;
             box-sizing: border-box;
         }
-        .checkbox {
+        .checkbox-group {
             margin-top: 20px;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 10px;
-            text-align: left;
         }
-        button {
+        .checkbox {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .forgot-password {
+            font-size: 14px;
+        }
+        .forgot-password button {
+            background: none;
+            border: none;
+            color: #349868;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 0;
+        }
+        .forgot-password button:hover {
+            text-decoration: underline;
+        }
+        button[type="submit"] {
             margin-top: 30px;
             width: 100%;
             padding: 14px;
@@ -64,7 +83,7 @@
             cursor: pointer;
             transition: background 0.3s;
         }
-        button:hover {
+        button[type="submit"]:hover {
             background: #277c5e;
         }
         .error {
@@ -105,9 +124,14 @@
         <label for="password">Slaptažodis</label>
         <input id="password" type="password" name="password" required>
 
-        <div class="checkbox">
-            <input type="checkbox" name="remember" id="remember">
-            <label for="remember">Prisiminti mane</label>
+        <div class="checkbox-group">
+            <div class="checkbox">
+                <input type="checkbox" name="remember" id="remember">
+                <label for="remember" style="margin: 0;">Prisiminti mane</label>
+            </div>
+            <div class="forgot-password">
+                <button type="button">Pamiršai slaptažodį?</button>
+            </div>
         </div>
 
         <button type="submit">Prisijungti</button>
