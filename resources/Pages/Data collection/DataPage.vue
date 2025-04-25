@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-import AppLayout from '../Layouts/AppLayout.vue';
+import AppLayout from '../../Layouts/AppLayout.vue';
 
 const griPages = [
     {

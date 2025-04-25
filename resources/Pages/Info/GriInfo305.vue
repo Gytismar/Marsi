@@ -1,16 +1,18 @@
 <template>
-    <GriTable
-        apiEndpoint="/api/v1/gri/g305-emissions"
-        title="GRI 305 Emisijos"
-        infoUrl="https://example.com/gri-305"
-        infoTooltip="Spauskite, jei norite sužinoti daugiau apie GRI 305: Emisijos"
+    <GriInfoTemplate
+        title="GRI 305: Emisijos"
+        :paragraphs="[
+            'GRI 305 standartas padeda organizacijoms atskleisti informaciją apie šiltnamio efektą sukeliančių dujų (ŠESD) emisijas. Jame pateikiamos gairės, kaip pranešti apie tiesiogines ir netiesiogines emisijas, taip pat apie jų valdymą.',
+            'Žemiau pateikti laukai, kuriuos reikia užpildyti teikiant duomenis apie emisijas ir jų intensyvumą:'
+        ]"
+        externalUrl="https://example.com/gri-305"
         :columnLabels="columnLabels"
         :columnTooltips="columnTooltips"
     />
 </template>
 
 <script setup>
-import GriTable from '../Components/GriTable.vue';
+import GriInfoTemplate from '../../Layouts/GriInfoTemplate.vue';
 
 const columnLabels = {
     company_id: 'Įmonės ID',
@@ -29,5 +31,4 @@ const columnTooltips = {
     scope_3: 'Kitos netiesioginės emisijos, atsirandančios tiekimo grandinėje (pvz., kelionės, logistikos, produktų naudojimo).',
     ghg_intensity: 'Šiltnamio efektą sukeliančių dujų emisijos intensyvumas (pvz., emisijos vienam produkto vienetui ar pajamoms).',
 };
-
 </script>

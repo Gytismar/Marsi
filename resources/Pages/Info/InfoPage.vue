@@ -27,7 +27,7 @@
 </template>
 
 <script setup>
-import AppLayout from '../Layouts/AppLayout.vue';
+import AppLayout from '../../Layouts/AppLayout.vue';
 
 const griInfo = [
     { code: '302', title: 'GRI 302: Energija', description: 'Apima energijos vartojimą, šaltinius bei efektyvumą.', localRoute: '/informacija/g302-energy' },

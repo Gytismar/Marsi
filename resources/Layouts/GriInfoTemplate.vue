@@ -57,7 +57,7 @@ const goBack = () => {
 </script>
 
 <style scoped>
-@import '../Pages/GriInfoStyles.css';
+@import '../Pages/Info/GriInfoStyles.css';
 
 .standard-page {
     padding: 2rem 2rem 2rem 3rem;

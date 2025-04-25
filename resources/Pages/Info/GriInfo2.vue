@@ -1,16 +1,18 @@
 <template>
-    <GriTable
-        apiEndpoint="/api/v1/gri/g2-governance"
-        title="GRI 2 Valdymas"
-        infoUrl="https://example.com/gri-2"
-        infoTooltip="Spauskite, jei norite sužinoti daugiau apie GRI 2: Organizacinis valdymas"
+    <GriInfoTemplate
+        title="GRI 2: Valdymas"
+        :paragraphs="[
+            'GRI 2 standartas pateikia organizacijos valdymo struktūros, etikos, priežiūros ir atskaitomybės aprašymą. Tai bendrųjų atskleidimų standartas, kuris padeda suprasti organizacijos veiklos kontekstą.',
+            'Šie duomenų laukai padeda įmonėms pateikti skaidrią informaciją apie jų valdymo praktiką:'
+        ]"
+        externalUrl="https://example.com/gri-2"
         :columnLabels="columnLabels"
         :columnTooltips="columnTooltips"
     />
 </template>
 
 <script setup>
-import GriTable from '../Components/GriTable.vue';
+import GriInfoTemplate from '../../Layouts/GriInfoTemplate.vue';
 
 const columnLabels = {
     company_id: 'Įmonės ID',

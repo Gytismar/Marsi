@@ -10,7 +10,7 @@
 </template>
 
 <script setup>
-import GriTable from '../Components/GriTable.vue';
+import GriTable from '../../Components/GriTable.vue';
 
 const columnLabels = {
     company_id: 'Įmonės ID',

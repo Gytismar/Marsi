@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-import GriInfoTemplate from '../Layouts/GriInfoTemplate.vue';
+import GriInfoTemplate from '../../Layouts/GriInfoTemplate.vue';
 
 const columnLabels = {
     company_id: 'Įmonės ID',

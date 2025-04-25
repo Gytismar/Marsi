@@ -3,20 +3,20 @@ import '../css/app.css';
 import { createApp } from 'vue';
 
 import Home from '../Pages/Home.vue';
-import Gri302EnergyPage from '../Pages/Gri302EnergyPage.vue';
-import Gri303WaterPage from "../Pages/Gri303WaterPage.vue";
-import Gri305EmissionPage from "../Pages/Gri305EmissionPage.vue";
-import Gri306WastePage from "../Pages/Gri306WastePage.vue";
-import Gri403HealthSafetyPage from "../Pages/Gri403HealthSafetyPage.vue";
-import Gri2GovernancePage from "../Pages/Gri2GovernancePage.vue";
-import DataPage from "../Pages/DataPage.vue";
-import InfoPage from "../Pages/InfoPage.vue";
-import GriInfo302 from "../Pages/GriInfo302.vue";
-import GriInfo303 from "../Pages/GriInfo303.vue";
-import GriInfo305 from "../Pages/GriInfo305.vue";
-import GriInfo306 from "../Pages/GriInfo306.vue";
-import GriInfo403 from "../Pages/GriInfo403.vue";
-import GriInfo2 from "../Pages/GriInfo2.vue";
+import Gri302EnergyPage from '../Pages/Data collection/Gri302EnergyPage.vue';
+import Gri303WaterPage from "../Pages/Data collection/Gri303WaterPage.vue";
+import Gri305EmissionPage from "../Pages/Data collection/Gri305EmissionPage.vue";
+import Gri306WastePage from "../Pages/Data collection/Gri306WastePage.vue";
+import Gri403HealthSafetyPage from "../Pages/Data collection/Gri403HealthSafetyPage.vue";
+import Gri2GovernancePage from "../Pages/Data collection/Gri2GovernancePage.vue";
+import DataPage from "../Pages/Data collection/DataPage.vue";
+import InfoPage from "../Pages/Info/InfoPage.vue";
+import GriInfo302 from "../Pages/Info/GriInfo302.vue";
+import GriInfo303 from "../Pages/Info/GriInfo303.vue";
+import GriInfo305 from "../Pages/Info/GriInfo305.vue";
+import GriInfo306 from "../Pages/Info/GriInfo306.vue";
+import GriInfo403 from "../Pages/Info/GriInfo403.vue";
+import GriInfo2 from "../Pages/Info/GriInfo2.vue";
 
 const pages = {
     home: Home,

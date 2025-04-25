@@ -1,18 +1,16 @@
 <template>
-    <GriInfoTemplate
-        title="GRI 302: Energija"
-        :paragraphs="[
-            'GRI 302 standartas apima organizacijos energijos vartojimą, šaltinių kilmę, energijos intensyvumą bei energijos mažinimo priemones.',
-            'Žemiau pateikti laukai, kuriuos reikia užpildyti teikiant duomenis apie energijos naudojimą:'
-        ]"
-        externalUrl="https://www.globalreporting.org/standards/standard-download-center/gri-302-energy-2016/"
+    <GriTable
+        apiEndpoint="/api/v1/gri/g302-energy"
+        title="GRI 302 Energija"
+        infoUrl="https://www.youtube.com/watch?v=xvFZjo5PgG0&pp=ygUJcmljayByb2xs"
+        infoTooltip="Spauskite, jei norite sužinoti daugiau apie GRI 302: Energija"
         :columnLabels="columnLabels"
         :columnTooltips="columnTooltips"
     />
 </template>
 
 <script setup>
-import GriInfoTemplate from '../Layouts/GriInfoTemplate.vue';
+import GriTable from '../../Components/GriTable.vue';
 
 const columnLabels = {
     company_id: 'Įmonės ID',
