@@ -57,3 +57,11 @@ Route::post('/register', [AuthGRIController::class, 'register']);
 Route::get('/dashboard', function () {
     return 'Welcome to your dashboard!';
 })->middleware('auth')->name('dashboard');
+
+Route::get('/whoami', function () {
+    if (Auth::check()) {
+        return 'Logged in as: ' . Auth::user()->email;
+    }
+
+    return 'Not logged in.';
+});

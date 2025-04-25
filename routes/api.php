@@ -1,6 +1,9 @@
 <?php
 
+use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Session\Middleware\StartSession;
 use App\Http\Controllers\{CompanyController,
     RemoteDataFetchController,
     Gri2GovernanceController,
@@ -10,7 +13,13 @@ use App\Http\Controllers\{CompanyController,
     Gri306WasteController,
     Gri403HealthSafetyController};
 
-Route::prefix('v1')->group(function () {
+Route::middleware('web')->prefix('v1')->group(function () {
+    Route::get('/me', function () {
+        return response()->json([
+            'auth_id' => Auth::id(),
+            'user' => Auth::user(),
+        ]);
+    });
     Route::apiResource('companies', CompanyController::class);
     Route::post('/fetch-csv', [RemoteDataFetchController::class, 'fetch']);
     Route::prefix('gri')->group(function () {

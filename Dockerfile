@@ -33,6 +33,9 @@ RUN chown -R www-data:www-data /var/www && chmod -R 775 /var/www/storage /var/ww
 # Install Node dependencies and build assets
 RUN npm install && npm run build
 
+# Set safe git directory
+RUN git config --global --add safe.directory /var/www
+
 # Run Laravel optimization commands (optional)
 RUN composer install \
     && php artisan config:cache \
