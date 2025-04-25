@@ -21,7 +21,7 @@ class AuthGRIController extends Controller
 
         if (Auth::attempt($credentials, $request->filled('remember'))) {
             $request->session()->regenerate();
-            return redirect()->intended(route('dashboard'));
+            return redirect()->intended('/pagrindinis');
         }
 
         return back()->withErrors([
@@ -48,6 +48,12 @@ class AuthGRIController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'min:8', 'confirmed'],
+
+            'company_name' => ['required', 'string'],
+            'company_code' => ['required', 'string', 'unique:companies,company_code'],
+            'industry' => ['required', 'string'],
+            'country' => ['required', 'string'],
+            'size' => ['required', 'string'],
         ]);
 
         $user = \App\Models\User::create([
@@ -56,8 +62,18 @@ class AuthGRIController extends Controller
             'password' => bcrypt($validated['password']),
         ]);
 
+        $user->companies()->create([
+            'company_name' => $validated['company_name'],
+            'company_code' => $validated['company_code'],
+            'industry' => $validated['industry'],
+            'country' => $validated['country'],
+            'size' => $validated['size'],
+        ]);
+
         Auth::login($user);
         $request->session()->regenerate();
-        return redirect()->intended(route('dashboard'));
+
+        return redirect()->intended('/pagrindinis');
     }
+
 }

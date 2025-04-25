@@ -1,65 +1,86 @@
 <!DOCTYPE html>
-<html>
+<html lang="lt">
 <head>
-    <title>Login</title>
+    <meta charset="UTF-8">
+    <title>Prisijungimas</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: #f4f4f4;
+            background: #f0fdf4;
             padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
         .container {
             background: white;
-            max-width: 400px;
-            margin: auto;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 420px;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
         }
         h1 {
-            text-align: center;
+            color: #349868;
             margin-bottom: 25px;
+            font-size: 28px;
         }
         label {
             display: block;
-            margin-top: 15px;
+            text-align: left;
+            margin-top: 18px;
+            font-weight: bold;
+            color: #333;
         }
         input[type="email"],
-        input[type="password"],
-        input[type="text"] {
+        input[type="password"] {
             width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            padding: 12px 15px;
+            margin-top: 8px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            background: #f9fafb;
+            box-sizing: border-box;
+        }
+        .checkbox {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-align: left;
         }
         button {
-            margin-top: 20px;
+            margin-top: 30px;
             width: 100%;
-            padding: 10px;
-            background: #3490dc;
+            padding: 14px;
+            background: #349868;
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 10px;
             font-weight: bold;
+            font-size: 16px;
             cursor: pointer;
+            transition: background 0.3s;
         }
         button:hover {
-            background: #2779bd;
+            background: #277c5e;
         }
         .error {
-            background: #f8d7da;
-            color: #721c24;
+            background: #fee2e2;
+            color: #991b1b;
             padding: 10px;
-            border-radius: 4px;
-            margin-bottom: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-size: 14px;
         }
         .link {
-            margin-top: 15px;
-            text-align: center;
+            margin-top: 25px;
+            font-size: 14px;
         }
         .link a {
-            color: #3490dc;
+            color: #349868;
             text-decoration: none;
         }
         .link a:hover {
@@ -69,7 +90,7 @@
 </head>
 <body>
 <div class="container">
-    <h1>Login</h1>
+    <h1>Prisijungti</h1>
 
     @if ($errors->any())
         <div class="error">{{ $errors->first() }}</div>
@@ -78,21 +99,22 @@
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
-        <label>Email</label>
-        <input type="email" name="email" value="{{ old('email') }}" required autofocus>
+        <label for="email">El. paštas</label>
+        <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus>
 
-        <label>Password</label>
-        <input type="password" name="password" required>
+        <label for="password">Slaptažodis</label>
+        <input id="password" type="password" name="password" required>
 
-        <label>
-            <input type="checkbox" name="remember"> Remember Me
-        </label>
+        <div class="checkbox">
+            <input type="checkbox" name="remember" id="remember">
+            <label for="remember">Prisiminti mane</label>
+        </div>
 
-        <button type="submit">Login</button>
+        <button type="submit">Prisijungti</button>
     </form>
 
     <div class="link">
-        <a href="{{ route('register') }}">Don't have an account? Register</a>
+        <a href="{{ route('register') }}">Neturite paskyros? Registruotis</a>
     </div>
 </div>
 </body>
