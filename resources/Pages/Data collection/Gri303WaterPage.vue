@@ -16,7 +16,6 @@ const columnLabels = {
     company_id: 'Įmonės ID',
     reporting_year: 'Atskaitiniai metai',
     water_withdrawn: 'Panaudoto vandens kiekis',
-    water_source_type: 'Vandens šaltinio tipas',
     water_discharge: 'Išleidžiamo vandens kiekis',
     discharge_destination: 'Išleidimo vieta',
     water_consumption: 'Suvartotas vanduo',
@@ -29,12 +28,11 @@ const columnTooltips = {
     company_id: 'Įmonės identifikatorius.',
     reporting_year: 'Metai, už kuriuos pateikiami duomenys.',
     water_withdrawn: 'Iš gamtos paimtas vandens kiekis.',
-    water_source_type: 'Vandens šaltinio tipas (pvz., paviršinis, požeminis, miestų vandentiekis).',
     water_discharge: 'Išleistas vandens kiekis po naudojimo.',
     discharge_destination: 'Kur buvo išleistas vanduo – į gamtą, miesto kanalizaciją ir pan.',
     water_consumption: 'Vandens kiekis, kuris buvo sunaudotas ir neišleistas.',
     water_recycled: 'Kiekis vandens, kuris buvo pakartotinai panaudotas po perdirbimo.',
     unit: 'Vandens kiekio matavimo vienetas (pvz., m³).',
-    source: 'Duomenų šaltinis arba paaiškinimas.',
+    source: 'Vandens šaltinis',
 }
 </script>

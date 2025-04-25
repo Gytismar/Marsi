@@ -16,7 +16,6 @@ class Gri303Water extends Model
         'company_id',
         'reporting_year',
         'water_withdrawn',
-        'water_source_type',
         'water_discharge',
         'discharge_destination',
         'water_consumption',
@@ -30,4 +29,3 @@ class Gri303Water extends Model
         return $this->belongsTo(Company::class);
     }
 }
-
