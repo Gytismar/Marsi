@@ -13,8 +13,6 @@ class User extends Authenticatable
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
-    public mixed $companies;
-
     /**
      * The attributes that are mass assignable.
      *

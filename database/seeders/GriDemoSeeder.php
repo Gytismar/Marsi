@@ -32,7 +32,7 @@ class GriDemoSeeder extends Seeder
             'company_code' => '305678901',
             'industry' => 'Informacinės technologijos',
             'country' => 'Lietuva',
-            'size' => 'Maža',
+            'size' => '9',
         ]);
 
         $energySources = ['Vėjo jėgainės', 'Saulės elektrinė', 'Gamtinės dujos', 'Dyzeliniai generatoriai'];
