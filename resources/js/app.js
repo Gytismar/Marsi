@@ -17,7 +17,12 @@ import GriInfo305 from "../Pages/Info/GriInfo305.vue";
 import GriInfo306 from "../Pages/Info/GriInfo306.vue";
 import GriInfo403 from "../Pages/Info/GriInfo403.vue";
 import GriInfo2 from "../Pages/Info/GriInfo2.vue";
+import ReportsPage from "../Pages/ReportsPage.vue";
+import Gri302EnergyVisuals from "../Pages/Gri302EnergyVisuals.vue";
+import Gri303WaterVisuals from "../Pages/Gri303WaterVisuals.vue";
+import GenerateReportsPage from "../Pages/GenerateReportsPage.vue";
 
+let GeneratedReportsPage;
 const pages = {
     home: Home,
     data: DataPage,
@@ -29,6 +34,11 @@ const pages = {
     gri306: Gri306WastePage,
     gri403: Gri403HealthSafetyPage,
     gri2: Gri2GovernancePage,
+
+    reports: ReportsPage,
+    gri302visuals: Gri302EnergyVisuals,
+    gri303visuals: Gri303WaterVisuals,
+    generatedreports: GenerateReportsPage,
 
     griinfo302: GriInfo302,
     griinfo303: GriInfo303,

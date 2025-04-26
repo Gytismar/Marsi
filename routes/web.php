@@ -46,6 +46,14 @@ Route::get('/duomenys', function () {
     return view('app', ['page' => 'data']);
 });
 
+Route::get('/ataskaitos', fn() => view('app', ['page' => 'reports']));
+Route::get('/ataskaitos/gri302', fn() => view('app', ['page' => 'gri302visuals']));
+Route::get('/ataskaitos/gri303', fn() => view('app', ['page' => 'gri303visuals']));
+Route::get('/ataskaitos/generate', fn() => view('app', ['page' => 'generatedreports']));
+
+
+
+
 Route::get('/informacija', fn() => view('app', ['page' => 'info']));
 
 Route::get('/informacija/g302-energy', fn() => view('app', ['page' => 'griinfo302']));

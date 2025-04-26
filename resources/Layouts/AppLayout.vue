@@ -61,7 +61,7 @@ const dropdownOpen = ref(false);
 const menuItems = [
     { text: 'Pagrindinis', icon: homeIcon, route: '/pagrindinis' },
     { text: 'Duomenys', icon: dataIcon, route: '/duomenys' },
-    { text: 'Ataskaitos', icon: reportsIcon },
+    { text: 'Ataskaitos', icon: reportsIcon, route: '/ataskaitos' },
     { text: 'Informacija', icon: infoIcon, route: '/informacija' },
 ];
 
