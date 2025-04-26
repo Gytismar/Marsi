@@ -14,10 +14,11 @@
 
             <div class="flex justify-end mb-6">
                 <button
-                    class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg shadow-md transition"
+                    :disabled="exporting"
+                    class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg shadow-md transition disabled:opacity-50"
                     @click="exportPDF"
                 >
-                    Eksportuoti į PDF
+                    {{ exporting ? 'Eksportuojama...' : 'Eksportuoti į PDF' }}
                 </button>
             </div>
 
@@ -25,14 +26,23 @@
                 <div class="text-gray-600 text-lg animate-pulse">Kraunasi pasirinktos ataskaitos...</div>
             </div>
 
-            <div v-else id="report-content" class="space-y-16">
-
-                <!-- Render each selected GRI visualization -->
-                <div v-for="gri in selectedStandards" :key="gri.id">
-                    <component :is="gri.component" />
+            <div v-else id="report-content" class="space-y-24">
+                <div
+                    v-for="(gri, index) in selectedStandards"
+                    :key="gri.id"
+                    :class="{'page-break': index !== 0}"
+                >
+                    <Suspense>
+                        <template #default>
+                            <component :is="gri.component" />
+                        </template>
+                        <template #fallback>
+                            <div class="text-gray-500 text-center py-10">Kraunasi vizualizacija...</div>
+                        </template>
+                    </Suspense>
                 </div>
-
             </div>
+
         </section>
     </AppLayout>
 </template>
@@ -42,13 +52,13 @@ import { ref, onMounted, defineAsyncComponent } from 'vue';
 import AppLayout from '../Layouts/AppLayout.vue';
 import html2pdf from 'html2pdf.js';
 
-// Async load components
-const Gri302Visuals = defineAsyncComponent(() => import('./Gri302EnergyVisuals.vue'));
-const Gri303Visuals = defineAsyncComponent(() => import('./Gri303WaterVisuals.vue'));
-// (add other standards as needed)
+// Load Block Components
+const Gri302EnergyVisualsBlock = defineAsyncComponent(() => import('../Components/Visualizations/Gri302EnergyVisualsBlock.vue'));
+// (later: add Gri303, Gri305 etc.)
 
 const selectedStandards = ref([]);
 const loading = ref(true);
+const exporting = ref(false);
 
 onMounted(() => {
     const stored = localStorage.getItem('selectedReports');
@@ -56,13 +66,10 @@ onMounted(() => {
         const selectedPaths = JSON.parse(stored);
 
         selectedStandards.value = selectedPaths.map(path => {
-            if (path.includes('g302-energy')) {
-                return { id: 'g302', component: Gri302Visuals };
+            if (path.includes('gri302')) {
+                return { id: 'g302', component: Gri302EnergyVisualsBlock };
             }
-            if (path.includes('g303-water')) {
-                return { id: 'g303', component: Gri303Visuals };
-            }
-            // TODO: Add mappings for g305, g306, g403, g2 etc
+            // Add future mappings here
             return null;
         }).filter(Boolean);
     }
@@ -70,24 +77,52 @@ onMounted(() => {
     loading.value = false;
 });
 
-const exportPDF = () => {
+const exportPDF = async () => {
     const element = document.getElementById('report-content');
+    exporting.value = true;
+
     const options = {
-        margin: 0.5,
+        margin: [5, 5, 5, 5],
         filename: 'GRI_Ataskaita.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+        image: { type: 'jpeg', quality: 1 },
+        html2canvas: {
+            scale: 1.5,
+            useCORS: true,
+            scrollY: 0
+        },
+        jsPDF: {
+            unit: 'mm',
+            format: 'a2',
+            orientation: 'portrait',
+        },
+        pagebreak: { mode: ['css', 'legacy'] }
     };
-    html2pdf().from(element).set(options).save();
+
+    await html2pdf().from(element).set(options).save();
+    exporting.value = false;
 };
+
 </script>
 
 <style scoped>
 .generate-reports-page {
     padding: 2rem;
-    max-width: 1800px;
+    max-width: 1600px;
     margin: 0 auto;
+}
+
+#report-content {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    background: white;
+    padding: 1rem;
+}
+
+/* Page break between different standards */
+.page-break {
+    page-break-before: always;
+    break-before: page;
 }
 
 .page-title {
@@ -99,5 +134,9 @@ const exportPDF = () => {
 .page-subtitle {
     font-size: 1.25rem;
     color: #666;
+}
+
+button:disabled {
+    cursor: not-allowed;
 }
 </style>
