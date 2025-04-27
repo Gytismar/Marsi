@@ -18,10 +18,10 @@
                     <p class="text-sm text-gray-600">Naršykite, analizuokite ir importuokite organizacijos duomenis.</p>
                 </a>
 
-                <a href="#" class="p-6 bg-white shadow rounded-lg opacity-60 cursor-not-allowed border border-gray-200 text-center flex flex-col items-center gap-4">
+                <a href="/ataskaitos" class="p-6 bg-white shadow rounded-lg hover:shadow-lg transition-all border border-gray-200 text-center flex flex-col items-center gap-4">
                     <img src="@/assets/icons/reports.png" alt="Ataskaitos" class="w-12 h-12">
                     <span class="text-lg font-medium text-gray-800">Ataskaitos</span>
-                    <p class="text-sm text-gray-600">Bus pridėta netrukus.</p>
+                    <p class="text-sm text-gray-600">Peržiūrėkite ir analizuokite organizacijos ataskaitas apie tvarumą.</p>
                 </a>
 
                 <a href="/informacija" class="p-6 bg-white shadow rounded-lg hover:shadow-lg transition-all border border-gray-200 text-center flex flex-col items-center gap-4">
