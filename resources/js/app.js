@@ -21,9 +21,16 @@ import ReportsPage from "../Pages/ReportsPage.vue";
 import Gri302EnergyVisuals from "../Pages/Gri302EnergyVisuals.vue";
 import Gri303WaterVisuals from "../Pages/Gri303WaterVisuals.vue";
 import GenerateReportsPage from "../Pages/GenerateReportsPage.vue";
+import Gri305EmissionVisuals from "../Pages/Gri305EmissionVisuals.vue";
+import Gri306WasteVisuals from "../Pages/Gri306WasteVisuals.vue";
+import Gri403HealthSafetyVisuals from "../Pages/Gri403HealthSafetyVisuals.vue";
+import Gri2GovernanceVisuals from "../Pages/Gri2GovernanceVisuals.vue";
+import LandingPage from "../Pages/LandingPage.vue";
 
 let GeneratedReportsPage;
 const pages = {
+    landing: LandingPage,
+
     home: Home,
     data: DataPage,
     info: InfoPage,
@@ -38,6 +45,10 @@ const pages = {
     reports: ReportsPage,
     gri302visuals: Gri302EnergyVisuals,
     gri303visuals: Gri303WaterVisuals,
+    gri305visuals: Gri305EmissionVisuals,
+    gri306visuals: Gri306WasteVisuals,
+    gri403visuals: Gri403HealthSafetyVisuals,
+    gri2visuals: Gri2GovernanceVisuals,
     generatedreports: GenerateReportsPage,
 
     griinfo302: GriInfo302,
