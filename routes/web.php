@@ -13,7 +13,7 @@ Route::middleware(['auth'])->prefix('v1')->group(function () {
 });
 
 Route::get('/', function () {
-    return view('app', ['page' => 'home']);
+    return view('app', ['page' => 'landing']);
 });
 
 Route::get('/gri/g302-energy', function () {
@@ -49,6 +49,10 @@ Route::get('/duomenys', function () {
 Route::get('/ataskaitos', fn() => view('app', ['page' => 'reports']));
 Route::get('/ataskaitos/gri302', fn() => view('app', ['page' => 'gri302visuals']));
 Route::get('/ataskaitos/gri303', fn() => view('app', ['page' => 'gri303visuals']));
+Route::get('/ataskaitos/gri305', fn() => view('app', ['page' => 'gri305visuals']));
+Route::get('/ataskaitos/gri306', fn() => view('app', ['page' => 'gri306visuals']));
+Route::get('/ataskaitos/gri403', fn() => view('app', ['page' => 'gri403visuals']));
+Route::get('/ataskaitos/gri2', fn() => view('app', ['page' => 'gri2visuals']));
 Route::get('/ataskaitos/generate', fn() => view('app', ['page' => 'generatedreports']));
 
 

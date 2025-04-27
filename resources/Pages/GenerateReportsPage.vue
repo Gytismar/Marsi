@@ -82,6 +82,11 @@ import axios from 'axios';
 
 // Components
 const Gri302EnergyVisualsBlock = defineAsyncComponent(() => import('../Components/Visualizations/Gri302EnergyVisualsBlock.vue'));
+const Gri303WaterVisualsBlock = defineAsyncComponent(() => import('../Components/Visualizations/Gri303WaterVisualsBlock.vue'));
+const Gri305EmissionVisualsBlock = defineAsyncComponent(() => import('../Components/Visualizations/Gri305EmissionVisualsBlock.vue'));
+const Gri306WasteVisualsBlock = defineAsyncComponent(() => import('../Components/Visualizations/Gri306WasteVisualsBlock.vue'));
+const Gri403HealthSafetyVisualsBlock = defineAsyncComponent(() => import('../Components/Visualizations/Gri403HealthSafetyVisualsBlock.vue'));
+const Gri2GovernanceVisuals = defineAsyncComponent(() => import('../Components/Visualizations/Gri2GovernanceVisualsBlock.vue'));
 
 const selectedStandards = ref([]);
 const loading = ref(true);
@@ -96,9 +101,25 @@ onMounted(async () => {
     const stored = localStorage.getItem('selectedReports');
     if (stored) {
         const selectedPaths = JSON.parse(stored);
+
         selectedStandards.value = selectedPaths.map(path => {
             if (path.includes('gri302')) {
                 return { id: 'g302', component: Gri302EnergyVisualsBlock };
+            }
+            if (path.includes('gri303')) {
+                return { id: 'g303', component: Gri303WaterVisualsBlock };
+            }
+            if (path.includes('gri305')) {
+                return { id: 'g305', component: Gri305EmissionVisualsBlock };
+            }
+            if (path.includes('gri306')) {
+                return { id: 'g306', component: Gri306WasteVisualsBlock };
+            }
+            if (path.includes('gri403')) {
+                return { id: 'g403', component: Gri403HealthSafetyVisualsBlock };
+            }
+            if (path.includes('gri2')) {
+                return { id: 'g2', component: Gri2GovernanceVisuals };
             }
             return null;
         }).filter(Boolean);
