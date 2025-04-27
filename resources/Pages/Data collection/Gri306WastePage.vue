@@ -2,7 +2,7 @@
     <GriTable
         apiEndpoint="/api/v1/gri/g306-waste"
         title="GRI 306 Atliekos"
-        infoUrl="https://example.com/gri-306"
+        infoUrl="/informacija/g306"
         infoTooltip="Spauskite, jei norite sužinoti daugiau apie GRI 306: Atliekos"
         :columnLabels="columnLabels"
         :columnTooltips="columnTooltips"

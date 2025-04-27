@@ -2,7 +2,7 @@
     <GriTable
         apiEndpoint="/api/v1/gri/g403-health-safety"
         title="GRI 403 Sveikata ir sauga"
-        infoUrl="https://example.com/gri-403"
+        infoUrl="/informacija/g403"
         infoTooltip="Spauskite, jei norite sužinoti daugiau apie GRI 403: Darbuotojų sveikata ir sauga"
         :columnLabels="columnLabels"
         :columnTooltips="columnTooltips"

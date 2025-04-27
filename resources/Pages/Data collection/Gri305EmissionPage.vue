@@ -2,7 +2,7 @@
     <GriTable
         apiEndpoint="/api/v1/gri/g305-emissions"
         title="GRI 305 Emisijos"
-        infoUrl="https://example.com/gri-305"
+        infoUrl="/informacija/g305"
         infoTooltip="Spauskite, jei norite sužinoti daugiau apie GRI 305: Emisijos"
         :columnLabels="columnLabels"
         :columnTooltips="columnTooltips"

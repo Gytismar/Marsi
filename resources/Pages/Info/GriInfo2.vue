@@ -5,7 +5,7 @@
             'GRI 2 standartas pateikia organizacijos valdymo struktūros, etikos, priežiūros ir atskaitomybės aprašymą. Tai bendrųjų atskleidimų standartas, kuris padeda suprasti organizacijos veiklos kontekstą.',
             'Šie duomenų laukai padeda įmonėms pateikti skaidrią informaciją apie jų valdymo praktiką:'
         ]"
-        externalUrl="https://example.com/gri-2"
+        externalUrl="https://www.globalreporting.org/pdf.ashx?id=12358"
         :columnLabels="columnLabels"
         :columnTooltips="columnTooltips"
     />

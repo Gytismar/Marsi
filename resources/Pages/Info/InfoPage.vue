@@ -30,12 +30,12 @@
 import AppLayout from '../../Layouts/AppLayout.vue';
 
 const griInfo = [
-    { code: '302', title: 'GRI 302: Energija', description: 'Apima energijos vartojimą, šaltinius bei efektyvumą.', localRoute: '/informacija/g302-energy' },
-    { code: '303', title: 'GRI 303: Vanduo', description: 'Vandens suvartojimo ir poveikio valdymas.', localRoute: '/informacija/g303-water' },
-    { code: '305', title: 'GRI 305: Emisijos', description: 'Šiltnamio efektą sukeliančios dujos ir jų mažinimas.', localRoute: '/informacija/g305-emissions' },
-    { code: '306', title: 'GRI 306: Atliekos', description: 'Atliekų susidarymo ir perdirbimo praktikos.', localRoute: '/informacija/g306-waste' },
-    { code: '403', title: 'GRI 403: Sveikata ir Saugumas', description: 'Darbuotojų saugos valdymas.', localRoute: '/informacija/g403-health-safety' },
-    { code: '2', title: 'GRI 2: Valdymas', description: 'Etika, priežiūra ir valdymo struktūros.', localRoute: '/informacija/g2-governance' },
+    { code: '302', title: 'GRI 302: Energija', description: 'Apima energijos vartojimą, šaltinius bei efektyvumą.', localRoute: '/informacija/g302' },
+    { code: '303', title: 'GRI 303: Vanduo', description: 'Vandens suvartojimo ir poveikio valdymas.', localRoute: '/informacija/g303' },
+    { code: '305', title: 'GRI 305: Emisijos', description: 'Šiltnamio efektą sukeliančios dujos ir jų mažinimas.', localRoute: '/informacija/g305' },
+    { code: '306', title: 'GRI 306: Atliekos', description: 'Atliekų susidarymo ir perdirbimo praktikos.', localRoute: '/informacija/g306' },
+    { code: '403', title: 'GRI 403: Sveikata ir Saugumas', description: 'Darbuotojų saugos valdymas.', localRoute: '/informacija/g403' },
+    { code: '2', title: 'GRI 2: Valdymas', description: 'Etika, priežiūra ir valdymo struktūros.', localRoute: '/informacija/g2' },
 ];
 </script>
 

@@ -5,7 +5,7 @@
             'GRI 306 standartas skirtas organizacijų atliekų susidarymui, rūšiavimui, perdirbimui ir šalinimui stebėti bei atskleisti. Tai padeda parodyti įmonės požiūrį į tvarų atliekų tvarkymą ir poveikio aplinkai mažinimą.',
             'Žemiau pateikti duomenų laukai, kuriuos būtina užpildyti atliekant ataskaitą apie atliekas:'
         ]"
-        externalUrl="https://example.com/gri-306"
+        externalUrl="https://globalreporting.org/pdf.ashx?id=12521"
         :columnLabels="columnLabels"
         :columnTooltips="columnTooltips"
     />

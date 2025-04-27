@@ -5,7 +5,7 @@
             'GRI 305 standartas padeda organizacijoms atskleisti informaciją apie šiltnamio efektą sukeliančių dujų (ŠESD) emisijas. Jame pateikiamos gairės, kaip pranešti apie tiesiogines ir netiesiogines emisijas, taip pat apie jų valdymą.',
             'Žemiau pateikti laukai, kuriuos reikia užpildyti teikiant duomenis apie emisijas ir jų intensyvumą:'
         ]"
-        externalUrl="https://example.com/gri-305"
+        externalUrl="https://globalreporting.org/pdf.ashx?id=12510"
         :columnLabels="columnLabels"
         :columnTooltips="columnTooltips"
     />

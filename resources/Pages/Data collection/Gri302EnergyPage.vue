@@ -2,7 +2,7 @@
     <GriTable
         apiEndpoint="/api/v1/gri/g302-energy"
         title="GRI 302 Energija"
-        infoUrl="https://www.youtube.com/watch?v=xvFZjo5PgG0&pp=ygUJcmljayByb2xs"
+        infoUrl="/informacija/g302"
         infoTooltip="Spauskite, jei norite sužinoti daugiau apie GRI 302: Energija"
         :columnLabels="columnLabels"
         :columnTooltips="columnTooltips"

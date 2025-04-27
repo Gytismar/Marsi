@@ -2,7 +2,7 @@
     <GriTable
         apiEndpoint="/api/v1/gri/g303-water"
         title="GRI 303 Vanduo"
-        infoUrl="https://example.com/gri-303"
+        infoUrl="/informacija/g303"
         infoTooltip="Spauskite, jei norite sužinoti daugiau apie GRI 303: Vanduo"
         :columnLabels="columnLabels"
         :columnTooltips="columnTooltips"

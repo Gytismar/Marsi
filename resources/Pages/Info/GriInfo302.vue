@@ -5,7 +5,7 @@
             'GRI 302 standartas apima organizacijos energijos vartojimą, šaltinių kilmę, energijos intensyvumą bei energijos mažinimo priemones.',
             'Žemiau pateikti laukai, kuriuos reikia užpildyti teikiant duomenis apie energijos naudojimą:'
         ]"
-        externalUrl="https://www.globalreporting.org/standards/standard-download-center/gri-302-energy-2016/"
+        externalUrl="https://www.globalreporting.org/pdf.ashx?id=12467"
         :columnLabels="columnLabels"
         :columnTooltips="columnTooltips"
     />

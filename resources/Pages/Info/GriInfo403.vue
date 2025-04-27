@@ -5,7 +5,7 @@
             'GRI 403 standartas apima darbuotojų sveikatos ir saugos valdymą darbo vietoje. Jis padeda organizacijoms atskleisti informaciją apie incidentų prevenciją, mokymus ir darbuotojų gerovę.',
             'Toliau pateikti pagrindiniai laukai, kuriuos reikia užpildyti teikiant informaciją apie darbuotojų sveikatą ir saugą:'
         ]"
-        externalUrl="https://example.com/gri-403"
+        externalUrl="https://www.globalreporting.org/pdf.ashx?id=12565"
         :columnLabels="columnLabels"
         :columnTooltips="columnTooltips"
     />

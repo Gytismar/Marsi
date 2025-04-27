@@ -2,7 +2,7 @@
     <GriTable
         apiEndpoint="/api/v1/gri/g2-governance"
         title="GRI 2 Valdymas"
-        infoUrl="https://example.com/gri-2"
+        infoUrl="/informacija/g2"
         infoTooltip="Spauskite, jei norite sužinoti daugiau apie GRI 2: Organizacinis valdymas"
         :columnLabels="columnLabels"
         :columnTooltips="columnTooltips"
