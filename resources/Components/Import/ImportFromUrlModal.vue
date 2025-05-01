@@ -3,7 +3,7 @@
         <div class="bg-white p-6 rounded-lg max-w-md w-full space-y-4">
             <h2 class="text-xl font-bold text-gray-800">Importuoti duomenis iš nuorodos</h2>
 
-            <input v-model="url" placeholder="CSV nuoroda" class="w-full border px-2 py-1 rounded" />
+            <input v-model="url" placeholder="Duomenų šaltinio nuoroda" class="w-full border px-2 py-1 rounded" />
             <input v-model="username" placeholder="Naudotojo vardas" class="w-full border px-2 py-1 rounded" />
             <input v-model="password" placeholder="Slaptažodis" type="password" class="w-full border px-2 py-1 rounded" />
 
