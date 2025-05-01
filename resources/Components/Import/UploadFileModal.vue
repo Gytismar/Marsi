@@ -117,7 +117,7 @@ const handleFile = async (e) => {
 }
 
 function onImportSuccess() {
-    successMessage.value = '✅ Imported successfully!'
+    successMessage.value = '✅ Duomenys importuoti sėkmingai!'
     setTimeout(() => {
         emit('close')
         window.dispatchEvent(new Event('refresh-gri-data'))
