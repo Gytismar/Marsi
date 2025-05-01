@@ -46,7 +46,7 @@
                     </div>
                 </div>
 
-                <!-- Page break -->
+                <!-- Page break after cover page -->
                 <div class="page-break"></div>
 
                 <!-- 📊 Dynamic GRI Visuals -->
@@ -64,12 +64,10 @@
                         </template>
                     </Suspense>
 
-                    <!-- Page break after every standard -->
-                    <div class="page-break"></div>
+                    <div v-if="index < selectedStandards.length - 1" class="page-break"></div>
                 </div>
 
             </div>
-
         </section>
     </AppLayout>
 </template>
@@ -103,29 +101,16 @@ onMounted(async () => {
         const selectedPaths = JSON.parse(stored);
 
         selectedStandards.value = selectedPaths.map(path => {
-            if (path.includes('gri302')) {
-                return { id: 'g302', component: Gri302EnergyVisualsBlock };
-            }
-            if (path.includes('gri303')) {
-                return { id: 'g303', component: Gri303WaterVisualsBlock };
-            }
-            if (path.includes('gri305')) {
-                return { id: 'g305', component: Gri305EmissionVisualsBlock };
-            }
-            if (path.includes('gri306')) {
-                return { id: 'g306', component: Gri306WasteVisualsBlock };
-            }
-            if (path.includes('gri403')) {
-                return { id: 'g403', component: Gri403HealthSafetyVisualsBlock };
-            }
-            if (path.includes('gri2')) {
-                return { id: 'g2', component: Gri2GovernanceVisuals };
-            }
+            if (path.includes('gri302')) return { id: 'g302', component: Gri302EnergyVisualsBlock };
+            if (path.includes('gri303')) return { id: 'g303', component: Gri303WaterVisualsBlock };
+            if (path.includes('gri305')) return { id: 'g305', component: Gri305EmissionVisualsBlock };
+            if (path.includes('gri306')) return { id: 'g306', component: Gri306WasteVisualsBlock };
+            if (path.includes('gri403')) return { id: 'g403', component: Gri403HealthSafetyVisualsBlock };
+            if (path.includes('gri2')) return { id: 'g2', component: Gri2GovernanceVisuals };
             return null;
         }).filter(Boolean);
     }
 
-    // Fetch Company Info
     try {
         const { data } = await axios.get('/api/v1/companies');
         company.value = Array.isArray(data) ? data[0] : data;
@@ -178,7 +163,6 @@ const exportPDF = async () => {
     padding: 1rem;
 }
 
-/* 📄 Cover Page Styles */
 .cover-page {
     display: flex;
     flex-direction: column;
@@ -188,13 +172,11 @@ const exportPDF = async () => {
     text-align: center;
 }
 
-/* 🛑 Page Break */
 .page-break {
     page-break-before: always;
     break-before: page;
 }
 
-/* 🔥 Standards Section */
 .standard-block {
     padding-top: 2rem;
     padding-bottom: 2rem;
