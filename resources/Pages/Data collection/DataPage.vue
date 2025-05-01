@@ -1,22 +1,35 @@
 <template>
     <AppLayout>
         <template #default>
-            <div class="data-page">
-                <h1 class="page-title">Duomenų Įvedimas</h1>
-                <p class="page-subtitle">Pasirinkite GRI standartą, kurį norite užpildyti</p>
+            <div class="p-8 w-full mx-auto" style="max-width: 1800px;">
+                <!-- Breadcrumbs and back button -->
+                <div class="mb-4">
+                    <nav class="text-sm text-gray-600 flex items-center gap-2">
+                        <a href="/" class="breadcrumb-link">Pagrindinis</a>
+                        <span>/</span>
+                        <span class="breadcrumb-current">Duomenys</span>
+                    </nav>
+                    <button class="back-button" @click="goBack">← Grįžti atgal</button>
+                </div>
 
-                <div class="cards-grid">
-                    <a
-                        v-for="gri in griPages"
-                        :key="gri.route"
-                        :href="gri.route"
-                        class="gri-card"
-                    >
-                        <div class="card-content">
-                            <h2>{{ gri.title }}</h2>
-                            <p>{{ gri.description }}</p>
-                        </div>
-                    </a>
+                <!-- Page content -->
+                <div class="data-page">
+                    <h1 class="page-title">Duomenų Įvedimas</h1>
+                    <p class="page-subtitle">Pasirinkite GRI standartą, kurį norite užpildyti</p>
+
+                    <div class="cards-grid">
+                        <a
+                            v-for="gri in griPages"
+                            :key="gri.route"
+                            :href="gri.route"
+                            class="gri-card"
+                        >
+                            <div class="card-content">
+                                <h2>{{ gri.title }}</h2>
+                                <p>{{ gri.description }}</p>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </template>
@@ -25,6 +38,10 @@
 
 <script setup>
 import AppLayout from '../../Layouts/AppLayout.vue';
+
+const goBack = () => {
+    window.history.back();
+};
 
 const griPages = [
     {
@@ -61,8 +78,37 @@ const griPages = [
 </script>
 
 <style scoped>
+.breadcrumb-link {
+    text-decoration: none;
+    color: #007b5e;
+    font-weight: 500;
+}
+.breadcrumb-link:hover {
+    text-decoration: underline;
+}
+.breadcrumb-current {
+    color: #444;
+    font-weight: 600;
+}
+
+.back-button {
+    margin-top: 0.25rem;
+    margin-bottom: 1rem;
+    background: none;
+    border: none;
+    color: #007b5e;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.2s ease;
+}
+.back-button:hover {
+    color: #004f3f;
+}
+
 .data-page {
-    padding: 2rem;
+    padding-top: 1rem;
 }
 
 .page-title {

@@ -1,14 +1,18 @@
-<!-- Pages/ReportsPage.vue -->
 <template>
     <AppLayout>
         <template #default>
-            <section class="reports-page">
-                <!-- Breadcrumbs -->
-                <nav class="text-sm text-gray-500 mb-6">
-                    <a href="/" class="hover:underline">Pradžia</a> &raquo;
-                    <span>Ataskaitos</span>
-                </nav>
+            <section class="p-8 w-full mx-auto" style="max-width: 1800px;">
+                <!-- Updated Breadcrumbs -->
+                <div class="mb-4">
+                    <nav class="text-sm text-gray-600 flex items-center gap-2">
+                        <a href="/" class="breadcrumb-link">Pagrindinis</a>
+                        <span>/</span>
+                        <span class="breadcrumb-current">Ataskaitos</span>
+                    </nav>
+                    <button class="back-button" @click="goBack">← Grįžti atgal</button>
+                </div>
 
+                <!-- Page Content -->
                 <h1 class="page-title">GRI Ataskaitos</h1>
                 <p class="page-subtitle">Pasirinkite GRI standartą, kurį norite peržiūrėti arba sugeneruoti sujungtą ataskaitą.</p>
 
@@ -84,6 +88,10 @@ const loading = ref(true);
 const selectionMode = ref(false);
 const selected = ref([]);
 
+const goBack = () => {
+    window.history.back();
+};
+
 const griStandards = ref([
     { id: 'g302', title: 'GRI 302: Energija', description: 'Apima energijos suvartojimą, šaltinius bei efektyvumą.', path: '/ataskaitos/gri302', api: '/api/v1/gri/g302-energy', available: false },
     { id: 'g303', title: 'GRI 303: Vanduo', description: 'Vandens suvartojimo ir poveikio valdymas.', path: '/ataskaitos/gri303', api: '/api/v1/gri/g303-water', available: false },
@@ -151,6 +159,35 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.breadcrumb-link {
+    text-decoration: none;
+    color: #007b5e;
+    font-weight: 500;
+}
+.breadcrumb-link:hover {
+    text-decoration: underline;
+}
+.breadcrumb-current {
+    color: #444;
+    font-weight: 600;
+}
+
+.back-button {
+    margin-top: 0.25rem;
+    margin-bottom: 1rem;
+    background: none;
+    border: none;
+    color: #007b5e;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.2s ease;
+}
+.back-button:hover {
+    color: #004f3f;
+}
+
 .reports-page {
     padding: 2rem;
     max-width: 1800px;

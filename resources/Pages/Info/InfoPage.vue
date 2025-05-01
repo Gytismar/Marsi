@@ -1,25 +1,38 @@
 <template>
     <AppLayout>
         <template #default>
-            <section class="info-page">
-                <div class="intro">
-                    <h1>GRI Standartų Apžvalga</h1>
-                    <p>Raskite trumpą aprašymą apie kiekvieną GRI standartą ir eikite į detalesnį puslapį.</p>
+            <section class="p-8 w-full mx-auto" style="max-width: 1800px;">
+                <!-- Breadcrumbs and back button -->
+                <div class="mb-4">
+                    <nav class="text-sm text-gray-600 flex items-center gap-2">
+                        <a href="/" class="breadcrumb-link">Pagrindinis</a>
+                        <span>/</span>
+                        <span class="breadcrumb-current">Informacija</span>
+                    </nav>
+                    <button class="back-button" @click="goBack">← Grįžti atgal</button>
                 </div>
 
-                <div class="cards">
-                    <a
-                        v-for="standard in griInfo"
-                        :key="standard.code"
-                        :href="standard.localRoute"
-                        class="card"
-                    >
-                        <div class="card-header">
-                            <h2>{{ standard.title }}</h2>
-                        </div>
-                        <p>{{ standard.description }}</p>
-                        <span class="learn-more">Plačiau →</span>
-                    </a>
+                <!-- Page content -->
+                <div class="info-page">
+                    <div class="intro">
+                        <h1>GRI Standartų Apžvalga</h1>
+                        <p>Raskite trumpą aprašymą apie kiekvieną GRI standartą ir eikite į detalesnį puslapį.</p>
+                    </div>
+
+                    <div class="cards">
+                        <a
+                            v-for="standard in griInfo"
+                            :key="standard.code"
+                            :href="standard.localRoute"
+                            class="card"
+                        >
+                            <div class="card-header">
+                                <h2>{{ standard.title }}</h2>
+                            </div>
+                            <p>{{ standard.description }}</p>
+                            <span class="learn-more">Plačiau →</span>
+                        </a>
+                    </div>
                 </div>
             </section>
         </template>
@@ -28,6 +41,10 @@
 
 <script setup>
 import AppLayout from '../../Layouts/AppLayout.vue';
+
+const goBack = () => {
+    window.history.back();
+};
 
 const griInfo = [
     { code: '302', title: 'GRI 302: Energija', description: 'Apima energijos vartojimą, šaltinius bei efektyvumą.', localRoute: '/informacija/g302' },
@@ -40,14 +57,42 @@ const griInfo = [
 </script>
 
 <style scoped>
+.breadcrumb-link {
+    text-decoration: none;
+    color: #007b5e;
+    font-weight: 500;
+}
+.breadcrumb-link:hover {
+    text-decoration: underline;
+}
+.breadcrumb-current {
+    color: #444;
+    font-weight: 600;
+}
+
+.back-button {
+    margin-top: 0.25rem;
+    margin-bottom: 1rem;
+    background: none;
+    border: none;
+    color: #007b5e;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.2s ease;
+}
+.back-button:hover {
+    color: #004f3f;
+}
+
 .info-page {
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
+    padding-top: 1rem;
 }
 
 .intro h1 {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
+    font-weight: bold;
     margin-bottom: 0.5rem;
 }
 
