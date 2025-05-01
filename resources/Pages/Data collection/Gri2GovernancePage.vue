@@ -13,7 +13,6 @@
 import GriTable from '../../Components/GriTable.vue';
 
 const columnLabels = {
-    company_id: 'Įmonės ID',
     reporting_year: 'Atskaitos metai',
     governance_structure: 'Valdymo struktūra',
     board_size: 'Valdybos narių skaičius',
@@ -31,7 +30,6 @@ const columnLabels = {
 };
 
 const columnTooltips = {
-    company_id: 'Unikalus įmonės identifikatorius.',
     reporting_year: 'Metai, kuriems taikoma ataskaita.',
     governance_structure: 'Organizacijos valdymo struktūros aprašymas.',
     board_size: 'Bendras valdybos narių skaičius.',

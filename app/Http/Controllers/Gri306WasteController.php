@@ -24,7 +24,7 @@ class Gri306WasteController extends AbstractGriController
         $required = $request->isMethod('post') ? 'required|' : 'sometimes|';
 
         return [
-            'company_id' => $required . 'integer',
+            'company_id' => 'sometimes|integer',
             'reporting_year' => $required . 'integer',
             'total_waste_generated' => $required . 'numeric',
             'hazardous_waste_generated' => $required . 'numeric',
@@ -38,7 +38,6 @@ class Gri306WasteController extends AbstractGriController
     protected function getRequiredFields(): array
     {
         return [
-            'company_id',
             'reporting_year',
             'total_waste_generated',
             'hazardous_waste_generated',

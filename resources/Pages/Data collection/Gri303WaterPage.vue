@@ -13,7 +13,6 @@
 import GriTable from '../../Components/GriTable.vue'
 
 const columnLabels = {
-    company_id: 'Įmonės ID',
     reporting_year: 'Atskaitiniai metai',
     water_withdrawn: 'Panaudoto vandens kiekis',
     water_discharge: 'Išleidžiamo vandens kiekis',
@@ -25,7 +24,6 @@ const columnLabels = {
 }
 
 const columnTooltips = {
-    company_id: 'Įmonės identifikatorius.',
     reporting_year: 'Metai, už kuriuos pateikiami duomenys.',
     water_withdrawn: 'Iš gamtos paimtas vandens kiekis.',
     water_discharge: 'Išleistas vandens kiekis po naudojimo.',

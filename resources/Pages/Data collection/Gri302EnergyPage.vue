@@ -13,7 +13,6 @@
 import GriTable from '../../Components/GriTable.vue';
 
 const columnLabels = {
-    company_id: 'Įmonės ID',
     reporting_year: 'Atskaitiniai metai',
     total_energy_consumed: 'Bendras energijos suvartojimas',
     renewable_energy_consumed: 'Atsinaujinančios energijos kiekis',
@@ -25,7 +24,6 @@ const columnLabels = {
 };
 
 const columnTooltips = {
-    company_id: 'Įmonės identifikatorius.',
     reporting_year: 'Metai, už kuriuos pateikiami duomenys.',
     total_energy_consumed: 'Bendras energijos kiekis, suvartotas per ataskaitinį laikotarpį.',
     renewable_energy_consumed: 'Energijos kiekis iš atsinaujinančių šaltinių, tokių kaip saulė, vėjas ir pan.',

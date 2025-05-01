@@ -25,7 +25,7 @@ class Gri302EnergyController extends AbstractGriController
         $required = $request->isMethod('post') ? 'required|' : 'sometimes|';
 
         return [
-            'company_id' => $required . 'integer',
+            'company_id' => 'sometimes|integer',
             'reporting_year' => $required . 'integer',
             'total_energy_consumed' => 'nullable|numeric',
             'renewable_energy_consumed' => $required . 'numeric',
@@ -40,7 +40,6 @@ class Gri302EnergyController extends AbstractGriController
     protected function getRequiredFields(): array
     {
         return [
-            'company_id',
             'reporting_year',
             'renewable_energy_consumed',
             'nonrenewable_energy_consumed',

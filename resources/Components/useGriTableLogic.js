@@ -17,8 +17,9 @@ export default function useGriTableLogic(props) {
     const fetchSchema = async () => {
         try {
             const { data } = await axios.get(`${props.apiEndpoint}/schema`)
-            columns.value = Array.from(new Set(['id', ...data.fields]))
+            columns.value = data.fields
             requiredFields.value = data.required || []
+            requiredFields.value = requiredFields.value.filter(field => field !== 'company_id')
             form.value = {}
         } catch (error) {
             console.error('Klaida gaunant schemą:', error)

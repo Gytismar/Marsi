@@ -24,7 +24,7 @@ class Gri305EmissionController extends AbstractGriController
         $required = $request->isMethod('post') ? 'required|' : 'sometimes|';
 
         return [
-            'company_id' => $required . 'integer',
+            'company_id' => 'sometimes|integer',
             'reporting_year' => $required . 'integer',
             'scope_1' => $required . 'numeric',
             'scope_2' => $required . 'numeric',
@@ -36,7 +36,6 @@ class Gri305EmissionController extends AbstractGriController
     protected function getRequiredFields(): array
     {
         return [
-            'company_id',
             'reporting_year',
             'scope_1',
             'scope_2',

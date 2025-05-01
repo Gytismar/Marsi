@@ -15,7 +15,6 @@
 import GriInfoTemplate from '../../Layouts/GriInfoTemplate.vue';
 
 const columnLabels = {
-    company_id: 'Įmonės ID',
     reporting_year: 'Atskaitiniai metai',
     total_energy_consumed: 'Bendras energijos suvartojimas',
     renewable_energy_consumed: 'Atsinaujinančios energijos kiekis',

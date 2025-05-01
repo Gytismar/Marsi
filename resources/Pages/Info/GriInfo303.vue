@@ -15,7 +15,6 @@
 import GriInfoTemplate from '../../Layouts/GriInfoTemplate.vue';
 
 const columnLabels = {
-    company_id: 'Įmonės ID',
     reporting_year: 'Atskaitiniai metai',
     water_withdrawn: 'Panaudoto vandens kiekis',
     water_source_type: 'Vandens šaltinio tipas',

@@ -24,7 +24,7 @@ class Gri403HealthSafetyController extends AbstractGriController
         $required = $request->isMethod('post') ? 'required|' : 'sometimes|';
 
         return [
-            'company_id' => $required . 'integer',
+            'company_id' => 'sometimes|integer',
             'reporting_year' => $required . 'integer',
             'total_workforce' => $required . 'integer',
             'incidents_of_injury' => $required . 'integer',
@@ -38,7 +38,6 @@ class Gri403HealthSafetyController extends AbstractGriController
     protected function getRequiredFields(): array
     {
         return [
-            'company_id',
             'reporting_year',
             'total_workforce',
             'incidents_of_injury',

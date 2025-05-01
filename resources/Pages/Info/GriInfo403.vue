@@ -15,7 +15,6 @@
 import GriInfoTemplate from '../../Layouts/GriInfoTemplate.vue';
 
 const columnLabels = {
-    company_id: 'Įmonės ID',
     reporting_year: 'Atskaitos metai',
     total_workforce: 'Darbuotojų skaičius',
     incidents_of_injury: 'Sužeidimų skaičius',

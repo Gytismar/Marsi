@@ -15,7 +15,6 @@
 import GriInfoTemplate from '../../Layouts/GriInfoTemplate.vue';
 
 const columnLabels = {
-    company_id: 'Įmonės ID',
     reporting_year: 'Atskaitos metai',
     total_waste_generated: 'Bendras atliekų kiekis (t)',
     hazardous_waste_generated: 'Pavojingų atliekų kiekis (t)',

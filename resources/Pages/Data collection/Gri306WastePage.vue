@@ -13,7 +13,6 @@
 import GriTable from '../../Components/GriTable.vue';
 
 const columnLabels = {
-    company_id: 'Įmonės ID',
     reporting_year: 'Atskaitos metai',
     total_waste_generated: 'Bendras atliekų kiekis (t)',
     hazardous_waste_generated: 'Pavojingų atliekų kiekis (t)',
@@ -24,7 +23,6 @@ const columnLabels = {
 };
 
 const columnTooltips = {
-    company_id: 'Unikalus įmonės identifikatorius.',
     reporting_year: 'Metai, kuriems taikoma ataskaita.',
     total_waste_generated: 'Per ataskaitinį laikotarpį sugeneruotas bendras atliekų kiekis.',
     hazardous_waste_generated: 'Pavojingų atliekų kiekis, turinčių kenksmingų savybių.',

@@ -13,7 +13,6 @@
 import GriTable from '../../Components/GriTable.vue';
 
 const columnLabels = {
-    company_id: 'Įmonės ID',
     reporting_year: 'Atskaitos metai',
     total_workforce: 'Darbuotojų skaičius',
     incidents_of_injury: 'Sužeidimų skaičius',
@@ -24,7 +23,6 @@ const columnLabels = {
 };
 
 const columnTooltips = {
-    company_id: 'Unikalus įmonės identifikatorius.',
     reporting_year: 'Metai, kuriems taikoma ataskaita.',
     total_workforce: 'Bendras darbuotojų skaičius per ataskaitinį laikotarpį.',
     incidents_of_injury: 'Registruotų darbuotojų sužeidimų skaičius.',

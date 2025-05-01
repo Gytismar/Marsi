@@ -15,7 +15,6 @@
 import GriInfoTemplate from '../../Layouts/GriInfoTemplate.vue';
 
 const columnLabels = {
-    company_id: 'Įmonės ID',
     reporting_year: 'Atskaitos metai',
     scope_1: '1 srities emisijos (t CO₂e)',
     scope_2: '2 srities emisijos (t CO₂e)',

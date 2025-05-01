@@ -24,7 +24,7 @@ class Gri2GovernanceController extends AbstractGriController
         $required = $request->isMethod('post') ? 'required|' : 'sometimes|';
 
         return [
-            'company_id' => $required . 'integer',
+            'company_id' => 'sometimes|integer',
             'reporting_year' => $required . 'integer',
             'governance_structure' => 'nullable|string',
             'board_size' => 'nullable|integer',
@@ -44,7 +44,6 @@ class Gri2GovernanceController extends AbstractGriController
     protected function getRequiredFields(): array
     {
         return [
-            'company_id',
             'reporting_year',
         ];
     }

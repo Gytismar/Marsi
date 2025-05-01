@@ -25,7 +25,7 @@ class Gri303WaterController extends AbstractGriController
         $required = $request->isMethod('post') ? 'required|' : 'sometimes|';
 
         return [
-            'company_id' => $required . 'integer',
+            'company_id' => 'sometimes|integer',
             'reporting_year' => $required . 'integer',
             'water_withdrawn' => $required . 'numeric',
             'discharge_destination' => $required . 'string',
@@ -40,37 +40,10 @@ class Gri303WaterController extends AbstractGriController
     protected function getRequiredFields(): array
     {
         return [
-            'company_id',
             'reporting_year',
             'water_withdrawn',
             'unit',
             'source',
         ];
-    }
-
-    public function schema(): JsonResponse
-    {
-        return response()->json([
-            'fields' => [
-                'company_id',
-                'reporting_year',
-                'water_withdrawn',
-                'water_discharge',
-                'discharge_destination',
-                'water_consumption',
-                'water_recycled',
-                'unit',
-                'source',
-            ],
-            'required' => [
-                'company_id',
-                'reporting_year',
-                'water_withdrawn',
-                'discharge_destination',
-                'water_consumption',
-                'unit',
-                'source',
-            ],
-        ]);
     }
 }

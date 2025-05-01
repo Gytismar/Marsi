@@ -32,11 +32,11 @@ abstract class Service
 
     public function create(array $data): Model
     {
-        if (isset($data['company_id'])) {
+        if (!isset($data['company_id'])) {
             $company = \App\Models\Company::query()
-                ->where('id', $data['company_id'])
                 ->where('user_id', Auth::id())
                 ->firstOrFail();
+            $data['company_id'] = $company->id;
         }
 
         return $this->model()->newQuery()->create($data);
@@ -57,7 +57,9 @@ abstract class Service
 
     public function getSchema(): array
     {
-        return $this->model()->getFillable();
+        $fields = $this->model()->getFillable();
+
+        return array_values(array_filter($fields, fn($field) => $field !== 'company_id' && $field !== 'id'));
     }
 
     public function bulkCreate(array $rows): array
