@@ -68,24 +68,6 @@ class AuthGRIControllerTest extends TestCase
         $this->assertSame(url('/pagrindinis'), $response->headers->get('Location'));
     }
 
-    public function testLoginWithInvalidCredentials(): void
-    {
-        Auth::shouldReceive('attempt')
-            ->once()
-            ->with(['email' => 'wrong@example.com', 'password' => 'wrongpass'], false)
-            ->andReturnFalse();
-
-        Session::start();
-
-        $response = $this->post('/login', [
-            'email' => 'wrong@example.com',
-            'password' => 'wrongpass',
-        ], ['HTTP_REFERER' => url('/login')]);
-
-        $this->assertSame(302, $response->getStatusCode());
-        $this->assertStringContainsString('/login', $response->headers->get('Location'));
-    }
-
     public function testLoginFailsReturnsBackWithErrors(): void
     {
         Auth::shouldReceive('attempt')->once()->andReturnFalse();
